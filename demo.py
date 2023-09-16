@@ -26,3 +26,5 @@ objs = read_reprs(demo_path, statements=["from ajxo import Ajxo"])
 print("\nRead objects:")
 for obj in objs:
 	print(obj)
+
+print()
