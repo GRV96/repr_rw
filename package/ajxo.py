@@ -1,4 +1,5 @@
 class Ajxo:
+	# "Ajxo" means "thing" in Esperanto.
 
 	def __init__(self, a, b):
 		self.a = a

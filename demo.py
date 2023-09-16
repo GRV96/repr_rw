@@ -1,7 +1,8 @@
 from pathlib import Path
 
-from ajxo import\
-	Ajxo
+from package import\
+	Ajxo,\
+	Point
 from repr_rw import\
 	read_reprs,\
 	write_reprs
@@ -10,7 +11,10 @@ from repr_rw import\
 objs = [
 	Ajxo(7, "abc"),
 	Ajxo("def", 3.14159),
-	Ajxo(False, (19, 23))
+	Ajxo(False, (19, 23)),
+	Point(29, 7),
+	Point(461.28, 37.59),
+	Point(10.2, 83)
 ]
 
 demo_path = Path("objects.txt")
@@ -21,7 +25,7 @@ for obj in objs:
 
 write_reprs(demo_path, objs)
 
-objs = read_reprs(demo_path, statements=["from ajxo import Ajxo"])
+objs = read_reprs(demo_path, statements=["from package import Ajxo, Point"])
 
 # Delete the file where the representations are written.
 demo_path.unlink()
