@@ -1,11 +1,15 @@
 from pathlib import\
 	Path
+import re
 
 
 _ENCODING_UTF8 = "utf-8"
 _MODE_R = "r"
 _MODE_W = "w"
 _NEW_LINE = "\n"
+
+_REGEX_IMPORT = "import .+"
+_REGEX_FROM_IMPORT = "from .+ import .+"
 
 
 def _ensure_is_path(obj):
@@ -20,21 +24,33 @@ def _ensure_is_path(obj):
 			"An argument of type string or pathlib.Path is expected.")
 
 
-def read_reprs(file_path, ignore_except=False, statements=None):
+def _is_import_statement(some_str):
+	if re.match(_REGEX_IMPORT, some_str) is not None:
+		return True
+
+	if re.match(_REGEX_FROM_IMPORT, some_str) is not None:
+		return True
+
+	return False
+
+
+def read_reprs(file_path, imp_statements=None, ignore_except=False):
 	"""
 	If a text file contains the representation of Python objects, this function
 	can read it to recreate those objects. Each line must contain a string
 	returned by function repr. Empty lines are ignored.
 
+	Recreating objects requires to import their class. To do so, you will need
+	to provide the appropriate import statements. Statements that are not
+	importations will not be executed.
+
 	Args:
 		file_path (str or pathlib.Path): the path to a text file that contains
 			object representations
+		imp_statements (list, set or tuple): the import statements (str)
+			required to recreate the objects. Defaults to None.
 		ignore_except (bool): If it is True, exceptions raised upon the parsing
 			of object representations will be ignored. Defaults to False.
-		statements (container): code in str objects to be executed with
-			function exec before the parsing of object representations. They
-			should be the importation of the type of the objects to recreate.
-			Defaults to None.
 
 	Returns:
 		list: the objects recreated from their representation
@@ -43,9 +59,10 @@ def read_reprs(file_path, ignore_except=False, statements=None):
 		Exception: any exception raised upon the parsing of an object
 			representation if ignore_except is False.
 	"""
-	if statements is not None:
-		for statement in statements:
-			exec(statement)
+	if imp_statements is not None:
+		for statement in imp_statements:
+			if _is_import_statement(statement):
+				exec(statement)
 
 	file_path = _ensure_is_path(file_path)
 
@@ -57,12 +74,9 @@ def read_reprs(file_path, ignore_except=False, statements=None):
 	objs = list()
 
 	for line in raw_lines:
-
 		if len(line) >= 1:
-
 			try:
 				objs.append(eval(line))
-
 			except Exception as e:
 				if not ignore_except:
 					raise e
@@ -72,18 +86,18 @@ def read_reprs(file_path, ignore_except=False, statements=None):
 
 def write_reprs(file_path, objs):
 	"""
-	Writes the representation of Python objects in a text file. Each line
-	contains a string returned by function repr. If the file already exists,
+	Writes the representation of Python objects in a text file. Each line will
+	contain a string returned by function repr. If the file already exists,
 	this function will overwrite it.
 
 	Args:
 		file_path (str or pathlib.Path): the path to the text file that will
-			contains the object representations
-		objs (container): the objects whose representation will be written
+			contain the object representations
+		objs (list, set or tuple): the objects whose representation will be
+			written
 	"""
 	file_path = _ensure_is_path(file_path)
 
 	with file_path.open(mode=_MODE_W, encoding=_ENCODING_UTF8) as file:
-
 		for obj in objs:
 			file.write(repr(obj) + _NEW_LINE)

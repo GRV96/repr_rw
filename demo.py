@@ -25,7 +25,7 @@ for obj in objs:
 
 write_reprs(demo_path, objs)
 
-objs = read_reprs(demo_path, statements=["from package import Ajxo, Point"])
+objs = read_reprs(demo_path, ["from package import Ajxo, Point"])
 
 # Delete the file where the representations are written.
 demo_path.unlink()
