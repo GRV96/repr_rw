@@ -23,6 +23,9 @@ write_reprs(demo_path, objs)
 
 objs = read_reprs(demo_path, statements=["from ajxo import Ajxo"])
 
+# Delete the file where the representations are written.
+demo_path.unlink()
+
 print("\nRead objects:")
 for obj in objs:
 	print(obj)
