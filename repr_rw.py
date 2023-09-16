@@ -8,6 +8,18 @@ _MODE_W = "w"
 _NEW_LINE = "\n"
 
 
+def _ensure_is_path(obj):
+	if isinstance(obj, Path):
+		return obj
+
+	elif isinstance(obj, str):
+		return Path(obj)
+
+	else:
+		raise TypeError(
+			"An argument of type string or pathlib.Path is expected.")
+
+
 def read_reprs(file_path, ignore_except=False, statements=None):
 	"""
 	If a text file contains the representation of Python objects, this function
@@ -35,8 +47,7 @@ def read_reprs(file_path, ignore_except=False, statements=None):
 		for statement in statements:
 			exec(statement)
 
-	if isinstance(file_path, str):
-		file_path = Path(file_path)
+	file_path = _ensure_is_path(file_path)
 
 	with file_path.open(mode=_MODE_R, encoding=_ENCODING_UTF8) as file:
 		text = file.read()
@@ -70,8 +81,7 @@ def write_reprs(file_path, objs):
 			contains the object representations
 		objs (container): the objects whose representation will be written
 	"""
-	if isinstance(file_path, str):
-		file_path = Path(file_path)
+	file_path = _ensure_is_path(file_path)
 
 	with file_path.open(mode=_MODE_W, encoding=_ENCODING_UTF8) as file:
 
