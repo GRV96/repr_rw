@@ -1,10 +1,15 @@
 from pathlib import Path
+from sys import exit
 
 from repr_rw import\
 	read_reprs
 
 
 obj_path = Path("objects.txt")
+
+if not obj_path.exists():
+	print("Run demo_write.py to generate the file that this script needs.\n")
+	exit(1)
 
 # The first importation works with None because the
 # first entry in sys.path is the current directory.
