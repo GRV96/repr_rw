@@ -18,13 +18,13 @@ objs = [
 	Path("some/directory/file.txt")
 ]
 
-demo_path = Path("objects.txt")
+obj_path = Path("objects.txt")
 
 print("Objects to write:")
 for obj in objs:
 	print(obj)
 
-write_reprs(demo_path, objs)
+write_reprs(obj_path, objs)
 
 # The first importation works with None because the
 # first entry in sys.path is the current directory.
@@ -34,10 +34,10 @@ write_reprs(demo_path, objs)
 importations = {
 	"from demo_package import Ajxo, Point": None,
 	"from pathlib import PosixPath, WindowsPath": None}
-objs = read_reprs(demo_path, importations)
+objs = read_reprs(obj_path, importations)
 
 # Delete the file where the representations are written.
-demo_path.unlink()
+obj_path.unlink()
 
 print("\nRead objects:")
 for obj in objs:
