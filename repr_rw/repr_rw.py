@@ -50,8 +50,9 @@ def read_reprs(file_path, importations=None, ignore_except=False):
 	Args:
 		file_path (str or pathlib.Path): the path to a text file that contains
 			object representations
-		importations (list, set or tuple): the import statements (str)
-			required to recreate the objects. Defaults to None.
+		importations (dict): the import statements (keys, str) and the paths to
+			imported classes (values, str) required to recreate the objects.
+			Defaults to None.
 		ignore_except (bool): If it is True, exceptions raised upon the parsing
 			of object representations will be ignored. Defaults to False.
 
