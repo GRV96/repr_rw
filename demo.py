@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from package import\
+from demo_package import\
 	Ajxo,\
 	Point
 from repr_rw import\
@@ -26,8 +26,8 @@ for obj in objs:
 write_reprs(demo_path, objs)
 
 # A None value works in this case because
-# package is in the same directory as repr_rw.
-objs = read_reprs(demo_path, {"from package import Ajxo, Point": None})
+# demo_package is in the same directory as repr_rw.
+objs = read_reprs(demo_path, {"from demo_package import Ajxo, Point": None})
 
 # Delete the file where the representations are written.
 demo_path.unlink()
