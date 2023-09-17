@@ -25,6 +25,8 @@ for obj in objs:
 
 write_reprs(demo_path, objs)
 
+# The function works with None because the first
+# entry in sys.path is the current directory.
 objs = read_reprs(demo_path, {"from demo_package import Ajxo, Point": None})
 
 # Delete the file where the representations are written.
