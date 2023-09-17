@@ -16,10 +16,7 @@ importations = {
 	"from pathlib import PosixPath, WindowsPath": None}
 objs = read_reprs(obj_path, importations)
 
-# Delete the file where the representations are written.
-obj_path.unlink()
-
-print("\nRead objects:")
+print("Read objects:")
 for obj in objs:
 	print(obj)
 
