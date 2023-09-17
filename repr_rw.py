@@ -43,10 +43,9 @@ def read_reprs(file_path, importations=None, ignore_except=False):
 
 	Recreating objects requires to import their class. For this purpose, you
 	need to provide a dictionary mapping the appropriate import statements
-	(keys) to the path to the imported module (value). However, if the imported
-	module is a built-in one, set the value to None.
-
-	Statements that are not importations will not be executed.
+	(keys) to the path to the imported class (value). However, if the imported
+	class is from a built-in module, set the value to None. Statements that are
+	not importations will not be executed.
 
 	Args:
 		file_path (str or pathlib.Path): the path to a text file that contains
