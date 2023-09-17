@@ -38,8 +38,8 @@ def _is_import_statement(some_str):
 def read_reprs(file_path, importations=None, ignore_except=False):
 	"""
 	If a text file contains the representation of Python objects, this function
-	can read it to recreate those objects. Each line must contain a string
-	returned by function repr. Empty lines are ignored.
+	can read it to recreate those objects. Each line must be a string returned
+	by function repr. Empty lines are ignored.
 
 	Recreating objects requires to import their class. For this purpose, you
 	need to provide a dictionary mapping the appropriate import statements
@@ -93,9 +93,9 @@ def read_reprs(file_path, importations=None, ignore_except=False):
 
 def write_reprs(file_path, objs):
 	"""
-	Writes the representation of Python objects in a text file. Each line will
-	contain a string returned by function repr. If the file already exists,
-	this function will overwrite it.
+	Writes the representation of Python objects in a text file. Each line is a
+	string returned by function repr. If the file already exists, this function
+	overwrites it.
 
 	Args:
 		file_path (str or pathlib.Path): the path to the text file that will
