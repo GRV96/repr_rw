@@ -1,5 +1,5 @@
-# repr_rw
+# RperRW
 
-Writes Python object representations in a text file and reads the file to
-recreate the objects. Object representations are strings returned by function
-repr.
+This library writes Python object representations in a text file and reads the
+file to recreate the objects. Object representations are strings returned by
+function `repr`.
