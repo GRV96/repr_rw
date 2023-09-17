@@ -14,7 +14,8 @@ La fonction `read_reprs` lit les fichiers texte qui contiennent des
 représentations d'objet Python dans le but de recréer ces objets. Chaque ligne
 doit être une représentation d'objet. Les lignes vides sont ignorées cependant.
 
-Consultez la documentation des fonctions pour plus d'informations.
+Consultez la documentation des fonctions et la démo dans le dépôt de code pour
+plus d'informations.
 
 ## English
 
@@ -30,4 +31,5 @@ Function `read_reprs` reads text files that contain the representation of
 Python objetcs in order to recreate those objects. Each line must be an object
 representation. Empty lines are ignored however.
 
-Consult the functions' documentation for the complete information.
+Consult the functions' documentation and the demo in the code repository for
+the complete information.
