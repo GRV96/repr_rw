@@ -1,6 +1,6 @@
 # ReprRW
 
-## Français
+## FRANÇAIS
 
 Cette bibliothèque écrit la représentation d'objets Python dans un fichier
 texte et lit le fichier pour recréer les objets. Une représentation d'objet
@@ -29,7 +29,7 @@ Le script `demo_read.py` montre comment utiliser la fonction `read_reprs`. Il
 faut l'exécuter après `demo_write.py`, car il ne fonctionne pas sans le fichier
 produit par cet autre script.
 
-## English
+## ENGLISH
 
 This library writes Python object representations in a text file and reads the
 file to recreate the objects. An object representation is a string returned by
