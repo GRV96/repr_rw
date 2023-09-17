@@ -13,9 +13,9 @@ if not obj_path.exists():
 
 # The first importation works with None because the first
 # entry in sys.path is the current working directory.
-# To ensure that the function works with any
-# package, move demo_package to another directory
-# and replace None with the path to that directory.
+# To ensure that the function works with any package,
+# move demo_package to another directory and replace
+# None with the path to that directory.
 importations = {
 	"from demo_package import Ajxo, Point": None,
 	"from pathlib import PosixPath, WindowsPath": None}
