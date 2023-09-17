@@ -1,6 +1,7 @@
 from pathlib import\
 	Path
 import re
+import sys
 
 
 _ENCODING_UTF8 = "utf-8"
@@ -34,20 +35,23 @@ def _is_import_statement(some_str):
 	return False
 
 
-def read_reprs(file_path, imp_statements=None, ignore_except=False):
+def read_reprs(file_path, importations=None, ignore_except=False):
 	"""
 	If a text file contains the representation of Python objects, this function
 	can read it to recreate those objects. Each line must contain a string
 	returned by function repr. Empty lines are ignored.
 
-	Recreating objects requires to import their class. To do so, you will need
-	to provide the appropriate import statements. Statements that are not
-	importations will not be executed.
+	Recreating objects requires to import their class. For this purpose, you
+	need to provide a dictionary mapping the appropriate import statements
+	(keys) to the path to the imported module (value). However, if the imported
+	module is a built-in one, set the value to None.
+
+	Statements that are not importations will not be executed.
 
 	Args:
 		file_path (str or pathlib.Path): the path to a text file that contains
 			object representations
-		imp_statements (list, set or tuple): the import statements (str)
+		importations (list, set or tuple): the import statements (str)
 			required to recreate the objects. Defaults to None.
 		ignore_except (bool): If it is True, exceptions raised upon the parsing
 			of object representations will be ignored. Defaults to False.
@@ -59,10 +63,13 @@ def read_reprs(file_path, imp_statements=None, ignore_except=False):
 		Exception: any exception raised upon the parsing of an object
 			representation if ignore_except is False.
 	"""
-	if imp_statements is not None:
-		for statement in imp_statements:
-			if _is_import_statement(statement):
-				exec(statement)
+	if importations is not None:
+		for importation, path in importations.items():
+			if _is_import_statement(importation):
+				if path is not None:
+					# Adding a string to sys.path is temporary.
+					sys.path.append(path)
+				exec(importation)
 
 	file_path = _ensure_is_path(file_path)
 
