@@ -25,8 +25,6 @@ for obj in objs:
 
 write_reprs(demo_path, objs)
 
-# A None value works in this case because
-# demo_package is in the same directory as repr_rw.
 objs = read_reprs(demo_path, {"from demo_package import Ajxo, Point": None})
 
 # Delete the file where the representations are written.
