@@ -1,3 +1,6 @@
+# File used by the demos
+objects.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
