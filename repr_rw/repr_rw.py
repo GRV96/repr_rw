@@ -43,16 +43,17 @@ def read_reprs(file_path, importations=None, ignore_except=False):
 
 	Recreating objects requires to import their class. For this purpose, you
 	need to provide a dictionary mapping the appropriate import statements
-	(keys) to the path to the imported class (value). However, if the imported
-	class is from a built-in module or the standard library, set the value to
-	None. Statements that are not importations will not be executed.
+	(keys, str) to the path to the imported class (value, str or pathlib.Path).
+	However, if the imported class is from a built-in module or the standard
+	library, set the value to None. Statements that are not importations will
+	not be executed.
 
 	Args:
 		file_path (str or pathlib.Path): the path to a text file that contains
 			object representations
 		importations (dict): the import statements (keys, str) and the paths to
-			imported classes (values, str) required to recreate the objects.
-			Defaults to None.
+			imported classes (values, str or pathlib.Path) required to recreate
+			the objects. Defaults to None.
 		ignore_except (bool): If it is True, exceptions raised upon the parsing
 			of object representations will be ignored. Defaults to False.
 
@@ -68,7 +69,7 @@ def read_reprs(file_path, importations=None, ignore_except=False):
 			if _is_import_statement(importation):
 				if path is not None:
 					# Adding a string to sys.path is temporary.
-					sys.path.append(path)
+					sys.path.append(str(path))
 				exec(importation)
 
 	file_path = _ensure_is_path(file_path)
