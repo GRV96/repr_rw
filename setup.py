@@ -29,7 +29,7 @@ def _make_long_description():
 if __name__ == "__main__":
 	setuptools.setup(
 		name = "repr_rw",
-		version = "0.0.1",
+		version = "0.0.2",
 		author = "Guyllaume Rousseau",
 		description = "This library writes Python object representations in a text file and reads the file to recreate the objects. An object representation is a string returned by function repr.",
 		long_description = _make_long_description(),
