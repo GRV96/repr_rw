@@ -22,7 +22,7 @@ plus d'informations.
 ### Démos
 
 Le script `demo_write.py` montre comment utiliser la fonction `write_reprs`. Il
-faut l'exécuter en premier, car elle produit un fichier dont `demo_read.py` a
+faut l'exécuter en premier, car il produit un fichier dont `demo_read.py` a
 besoin.
 
 Le script `demo_read.py` montre comment utiliser la fonction `read_reprs`. Il
