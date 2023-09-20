@@ -1,13 +1,3 @@
-# References
-# https://packaging.python.org/tutorials/packaging-projects/
-# https://www.geeksforgeeks.org/how-to-publish-python-package-at-pypi-using-twine-module/
-# https://stackoverflow.com/questions/45168408/creating-tar-gz-in-dist-folder-with-python-setup-py-install
-# https://docs.python.org/3/distutils/sourcedist.html
-# https://github.com/conda-incubator/grayskull
-# https://setuptools.pypa.io/en/latest/userguide/datafiles.html
-# https://packaging.python.org/en/latest/guides/using-manifest-in/
-
-
 import setuptools
 
 
