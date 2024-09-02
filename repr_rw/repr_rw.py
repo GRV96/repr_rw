@@ -13,6 +13,14 @@ _REGEX_IMPORT = "import .+"
 _REGEX_FROM_IMPORT = "from .+ import .+"
 
 
+def _add_to_sys_path(some_path):
+	if some_path is not None:
+		path_as_str = str(some_path)
+
+		if path_as_str not in sys.path:
+			sys.path.append(path_as_str)
+
+
 def _ensure_is_path(obj):
 	if isinstance(obj, Path):
 		return obj
@@ -67,9 +75,7 @@ def read_reprs(file_path, importations=None, ignore_except=False):
 	if importations is not None:
 		for importation, path in importations.items():
 			if _is_import_statement(importation):
-				if path is not None:
-					# Adding a string to sys.path is temporary.
-					sys.path.append(str(path))
+				_add_to_sys_path(path)
 				exec(importation)
 
 	file_path = _ensure_is_path(file_path)
