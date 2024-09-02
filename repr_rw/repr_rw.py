@@ -70,7 +70,8 @@ def read_reprs(file_path, importations=None, ignore_except=False):
 
 	Raises:
 		Exception: any exception raised upon the parsing of an object
-			representation if ignore_except is False.
+			representation if ignore_except is False. Make sure to specify the
+			correct paths in argument importations.
 	"""
 	if importations is not None:
 		for importation, path in importations.items():

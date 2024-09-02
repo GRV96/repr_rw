@@ -26,7 +26,7 @@ faut l'exécuter en premier, car il produit un fichier dont `demo_read.py` a
 besoin.
 
 ```
-python demo_write.py
+python demos/demo_write.py
 ```
 
 Le script `demo_read.py` montre comment utiliser la fonction `read_reprs`. Il
@@ -34,7 +34,7 @@ faut l'exécuter après `demo_write.py`, car il ne fonctionne pas sans le fichie
 produit par cet autre script.
 
 ```
-python demo_read.py
+python demos/demo_read.py
 ```
 
 ## ENGLISH
@@ -62,7 +62,7 @@ Script `demo_write.py` shows how to use function `write_reprs`. It must be
 executed first because it makes a file that `demo_read.py` needs.
 
 ```
-python demo_write.py
+python demos/demo_write.py
 ```
 
 Script `demo_read.py` shows how to use function `read_reprs`. It must be
@@ -70,5 +70,5 @@ executed after `demo_write.py` because it cannont work withoud the file made by
 that other script.
 
 ```
-python demo_read.py
+python demos/demo_read.py
 ```
