@@ -30,5 +30,3 @@ for obj in objs:
 	print(obj)
 
 write_reprs(obj_path, objs)
-
-print()
