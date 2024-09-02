@@ -13,7 +13,7 @@ _REGEX_IMPORT = "import .+"
 _REGEX_FROM_IMPORT = "from .+ import .+"
 
 
-def _add_to_sys_path(some_path):
+def _append_to_sys_path(some_path):
 	if some_path is not None:
 		path_as_str = str(some_path)
 
@@ -76,7 +76,7 @@ def read_reprs(file_path, importations=None, ignore_except=False):
 	if importations is not None:
 		for importation, path in importations.items():
 			if _is_import_statement(importation):
-				_add_to_sys_path(path)
+				_append_to_sys_path(path)
 				exec(importation)
 
 	file_path = _ensure_is_path(file_path)
