@@ -29,5 +29,3 @@ objs = read_reprs(obj_path, importations)
 print("Read objects:")
 for obj in objs:
 	print(obj)
-
-print()
