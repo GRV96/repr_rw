@@ -25,9 +25,17 @@ Le script `demo_write.py` montre comment utiliser la fonction `write_reprs`. Il
 faut l'exécuter en premier, car il produit un fichier dont `demo_read.py` a
 besoin.
 
+```
+python demo_write.py
+```
+
 Le script `demo_read.py` montre comment utiliser la fonction `read_reprs`. Il
 faut l'exécuter après `demo_write.py`, car il ne fonctionne pas sans le fichier
 produit par cet autre script.
+
+```
+python demo_read.py
+```
 
 ## ENGLISH
 
@@ -53,6 +61,14 @@ the complete information.
 Script `demo_write.py` shows how to use function `write_reprs`. It must be
 executed first because it makes a file that `demo_read.py` needs.
 
+```
+python demo_write.py
+```
+
 Script `demo_read.py` shows how to use function `read_reprs`. It must be
 executed after `demo_write.py` because it cannont work withoud the file made by
 that other script.
+
+```
+python demo_read.py
+```
