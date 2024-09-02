@@ -1,25 +1,23 @@
 import setuptools
 
 
-_ENCODING_UTF8 = "utf-8"
-_MODE_R = "r"
-
-_README = "README.md"
-
-
 def _make_long_description():
-	with open(_README, _MODE_R, encoding=_ENCODING_UTF8) as readme_file:
-		long_description = readme_file.read()
+	with open("README.md", "r", encoding="utf-8") as readme_file:
+		readme_content = readme_file.read()
 
-	start_index = long_description.index("## FRANÇAIS")
+	fr_index = readme_content.index("## FRANÇAIS")
+	fr_demos_index = readme_content.index("### Démos")
+	en_index = readme_content.index("## ENGLISH")
+	en_demos_index = readme_content.index("### Demos")
 
-	return long_description[start_index:]
+	return readme_content[fr_index:fr_demos_index]\
+		+ readme_content[en_index:en_demos_index].rstrip()
 
 
 if __name__ == "__main__":
 	setuptools.setup(
 		name = "repr_rw",
-		version = "1.0.0",
+		version = "1.0.1",
 		author = "Guyllaume Rousseau",
 		description = "This library writes Python object representations in a text file and reads the file to recreate the objects. An object representation is a string returned by function repr.",
 		long_description = _make_long_description(),
@@ -34,6 +32,6 @@ if __name__ == "__main__":
 			"Topic :: Software Development :: Libraries :: Python Modules",
 			"Topic :: Utilities"
 		],
-		packages = setuptools.find_packages(exclude=("demo_package",)),
+		packages = setuptools.find_packages(exclude=("demos", "demo_package",)),
 		license = "MIT",
 		license_files = ("LICENSE",))
