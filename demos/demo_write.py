@@ -1,5 +1,11 @@
 from pathlib import Path
 
+LOCAL_DIR = Path(__file__).parent
+
+# Required to import from the repository's root
+import sys
+sys.path.append(str(LOCAL_DIR.parent))
+
 from demo_package import\
 	Ajxo,\
 	Point
@@ -17,7 +23,7 @@ objs = [
 	Path("some/directory/file.txt")
 ]
 
-obj_path = Path("objects.txt")
+obj_path = LOCAL_DIR/"objects.txt"
 
 print("Objects to write:")
 for obj in objs:
