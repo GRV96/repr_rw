@@ -6,12 +6,12 @@ def _make_long_description():
 		readme_content = readme_file.read()
 
 	fr_index = readme_content.index("## FRANÇAIS")
-	fr_demos_index = readme_content.index("### Démos")
+	fr_dependencies_index = readme_content.index("### Dépendances")
 	en_index = readme_content.index("## ENGLISH")
-	en_demos_index = readme_content.index("### Demos")
+	en_dependencies_index = readme_content.index("### Dependencies")
 
-	return readme_content[fr_index:fr_demos_index]\
-		+ readme_content[en_index:en_demos_index].rstrip()
+	return readme_content[fr_index:fr_dependencies_index]\
+		+ readme_content[en_index:en_dependencies_index].rstrip()
 
 
 if __name__ == "__main__":

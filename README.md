@@ -19,6 +19,13 @@ doit être une représentation d'objet. Les lignes vides sont ignorées.
 Consultez la documentation des fonctions et les démos dans le dépôt de code pour
 plus d'informations.
 
+### Dépendances
+
+Installez les dépendances avec cette commande.
+```
+pip install -r requirements.txt
+```
+
 ### Démos
 
 Le script `demo_write.py` montre comment utiliser la fonction `write_reprs`. Il
@@ -55,6 +62,13 @@ representation. Empty lines are ignored.
 
 Consult the functions' documentation and the demos in the code repository for
 the complete information.
+
+### Dependencies
+
+Install the dependencies with this command.
+```
+pip install -r requirements.txt
+```
 
 ### Demos
 
