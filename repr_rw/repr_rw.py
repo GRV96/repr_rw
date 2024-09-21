@@ -71,13 +71,9 @@ def read_reprs(file_path, importations=None, ignore_except=False):
 	if importations is not None:
 		for importation, path in importations.items():
 			if _is_import_statement(importation):
-				if path is not None:
-					sp_append(path)
-
+				sp_append(path)
 				exec(importation)
-
-				if path is not None:
-					sp_remove(path)
+				sp_remove(path)
 
 	file_path = _ensure_is_path(file_path)
 
