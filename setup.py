@@ -14,10 +14,24 @@ def _make_long_description():
 		+ readme_content[en_index:en_dependencies_index].rstrip()
 
 
+def _make_requirement_list():
+	with open("requirements.txt", "r", encoding="utf-8") as req_file:
+		req_str = req_file.read()
+
+	raw_requirements = req_str.split("\n")
+
+	requirements = list()
+	for requirement in raw_requirements:
+		if len(requirement) > 0:
+			requirements.append(requirement)
+
+	return requirements
+
+
 if __name__ == "__main__":
 	setuptools.setup(
 		name = "repr_rw",
-		version = "1.0.1",
+		version = "1.0.2",
 		author = "Guyllaume Rousseau",
 		description = "This library writes Python object representations in a text file and reads the file to recreate the objects. An object representation is a string returned by function repr.",
 		long_description = _make_long_description(),
@@ -32,6 +46,7 @@ if __name__ == "__main__":
 			"Topic :: Software Development :: Libraries :: Python Modules",
 			"Topic :: Utilities"
 		],
+		install_requires = _make_requirement_list(),
 		packages = setuptools.find_packages(exclude=("demos", "demo_package",)),
 		license = "MIT",
 		license_files = ("LICENSE",))
