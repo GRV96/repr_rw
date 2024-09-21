@@ -1,7 +1,10 @@
 from pathlib import\
 	Path
 import re
-import sys
+
+from syspathmodif import\
+	sp_append,\
+	sp_remove
 
 
 _ENCODING_UTF8 = "utf-8"
@@ -11,14 +14,6 @@ _NEW_LINE = "\n"
 
 _REGEX_IMPORT = "import .+"
 _REGEX_FROM_IMPORT = "from .+ import .+"
-
-
-def _append_to_sys_path(some_path):
-	if some_path is not None:
-		path_as_str = str(some_path)
-
-		if path_as_str not in sys.path:
-			sys.path.append(path_as_str)
 
 
 def _ensure_is_path(obj):
@@ -76,8 +71,9 @@ def read_reprs(file_path, importations=None, ignore_except=False):
 	if importations is not None:
 		for importation, path in importations.items():
 			if _is_import_statement(importation):
-				_append_to_sys_path(path)
+				sp_append(path)
 				exec(importation)
+				sp_remove(path)
 
 	file_path = _ensure_is_path(file_path)
 
