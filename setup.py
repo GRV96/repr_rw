@@ -1,8 +1,12 @@
 import setuptools
 
 
+_ENCODING_UTF8 = "utf-8"
+_MODE_R = "r"
+
+
 def _make_long_description():
-	with open("README.md", "r", encoding="utf-8") as readme_file:
+	with open("README.md", _MODE_R, encoding=_ENCODING_UTF8) as readme_file:
 		readme_content = readme_file.read()
 
 	fr_index = readme_content.index("## FRANÇAIS")
@@ -15,7 +19,8 @@ def _make_long_description():
 
 
 def _make_requirement_list():
-	with open("requirements.txt", "r", encoding="utf-8") as req_file:
+	with open("requirements.txt",
+			_MODE_R, encoding=_ENCODING_UTF8) as req_file:
 		req_str = req_file.read()
 
 	raw_requirements = req_str.split("\n")
@@ -31,7 +36,7 @@ def _make_requirement_list():
 if __name__ == "__main__":
 	setuptools.setup(
 		name = "repr_rw",
-		version = "1.0.2",
+		version = "1.0.4",
 		author = "Guyllaume Rousseau",
 		description = "This library writes Python object representations in a text file and reads the file to recreate the objects. An object representation is a string returned by function repr.",
 		long_description = _make_long_description(),
