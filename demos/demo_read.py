@@ -31,4 +31,4 @@ objs = read_reprs(obj_path, importations)
 
 print("Read objects:")
 for obj in objs:
-	print(f"{obj} ({type(obj)})")
+	print(f"{obj} {type(obj)}")
