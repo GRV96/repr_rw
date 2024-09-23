@@ -1,16 +1,18 @@
 from pathlib import Path
+from syspathmodif import\
+	sp_append,\
+	sp_remove
 
-LOCAL_DIR = Path(__file__).parent
+_LOCAL_DIR = Path(__file__).parent
+_REPO_ROOT = _LOCAL_DIR.parent
 
-# Required to import from the repository's root
-import sys
-sys.path.append(str(LOCAL_DIR.parent))
-
+sp_append(_REPO_ROOT)
 from demo_package import\
 	Ajxo,\
 	Point
 from repr_rw import\
 	write_reprs
+sp_remove(_REPO_ROOT)
 
 
 objs = [
@@ -23,7 +25,7 @@ objs = [
 	Path("some/directory/file.txt")
 ]
 
-obj_path = LOCAL_DIR/"objects.txt"
+obj_path = _LOCAL_DIR/"objects.txt"
 
 print("Objects to write:")
 for obj in objs:
