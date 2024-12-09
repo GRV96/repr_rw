@@ -40,9 +40,9 @@ def _is_import_statement(some_str):
 
 def read_reprs(file_path, importations=None, ignore_except=False):
 	"""
-	If a text file contains the representation of Python objects, this function
-	can read it to recreate those objects. Each line in the file must be a
-	string returned by function repr. Empty lines are ignored.
+	If a text file contains the representation of Python objects, this
+	generator can read it to recreate those objects. Each line in the file
+	must be a string returned by function repr. Empty lines are ignored.
 
 	Recreating objects requires to import their class. For this purpose, you
 	need to provide a dictionary mapping the appropriate import statements
@@ -82,21 +82,13 @@ def read_reprs(file_path, importations=None, ignore_except=False):
 	file_path = _ensure_is_path(file_path)
 
 	with file_path.open(mode=_MODE_R, encoding=_ENCODING_UTF8) as file:
-		text = file.read()
-
-	raw_lines = text.split(_NEW_LINE)
-
-	objs = list()
-
-	for line in raw_lines:
-		if len(line) >= 1:
-			try:
-				objs.append(eval(line))
-			except Exception as e:
-				if not ignore_except:
-					raise e
-
-	return objs
+		for obj_repr in file: # The iterator yields one line at the time.
+			if len(obj_repr) >= 1:
+				try:
+					yield eval(obj_repr)
+				except Exception as e:
+					if not ignore_except:
+						raise e
 
 
 def write_reprs(file_path, objs):

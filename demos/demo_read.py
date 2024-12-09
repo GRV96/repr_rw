@@ -27,8 +27,8 @@ importations = {
 	# does not require a path.
 	"from pathlib import PosixPath, WindowsPath": None
 }
-objs = read_reprs(obj_path, importations)
+object_generator = read_reprs(obj_path, importations)
 
-print("Read objects:")
-for obj in objs:
-	print(f"{obj} {type(obj)}")
+print("Objects read:")
+for object in object_generator:
+	print(f"{object} {type(object)}")
