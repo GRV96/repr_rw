@@ -12,9 +12,9 @@ La fonction `write_reprs` écrit la représentation d'objets Python dans un
 fichier texte. Chaque ligne du fichier est une représentation d'objet. Si le
 fichier spécifié existe déjà, cette fonction l'écrase.
 
-La fonction `read_reprs` lit les fichiers texte qui contiennent des
-représentations d'objet Python dans le but de recréer ces objets. Chaque ligne
-doit être une représentation d'objet. Les lignes vides sont ignorées.
+La fonction `read_reprs` lit un fichier texte contenant des représentations
+d'objet Python dans le but de recréer ces objets. Chaque ligne du fichier doit
+être une représentation d'objet. Les lignes vides sont ignorées.
 
 Consultez la documentation des fonctions et les démos dans le dépôt de code pour
 plus d'informations.
@@ -56,9 +56,9 @@ Function `write_reprs` writes the representation of Python objects in a text
 file. Each line in the file is an object representation. If the specified file
 already exists, this function overwrites it.
 
-Function `read_reprs` reads text files that contain the representation of
-Python objetcs in order to recreate those objects. Each line must be an object
-representation. Empty lines are ignored.
+Function `read_reprs` reads a text file that contains the representation of
+Python objects in order to recreate those objects. Each line in the file must be
+an object representation. Empty lines are ignored.
 
 Consult the functions' documentation and the demos in the code repository for
 the complete information.
@@ -80,7 +80,7 @@ python demos/demo_write.py
 ```
 
 Script `demo_read.py` shows how to use function `read_reprs`. It must be
-executed after `demo_write.py` because it cannont work withoud the file made by
+executed after `demo_write.py` because it cannot work without the file made by
 that other script.
 
 ```
