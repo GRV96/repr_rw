@@ -4,18 +4,33 @@ import setuptools
 _ENCODING_UTF8 = "utf-8"
 _MODE_R = "r"
 
+_NEW_LINE = "\n"
 
-def _make_long_description():
+
+def _make_descriptions():
 	with open("README.md", _MODE_R, encoding=_ENCODING_UTF8) as readme_file:
 		readme_content = readme_file.read()
 
-	fr_index = readme_content.index("## FRANÇAIS")
-	fr_dependencies_index = readme_content.index("### Dépendances")
-	en_index = readme_content.index("## ENGLISH")
-	en_dependencies_index = readme_content.index("### Dependencies")
+	fr_title = "## FRANÇAIS"
+	en_title = "## ENGLISH"
 
-	return readme_content[fr_index:fr_dependencies_index]\
-		+ readme_content[en_index:en_dependencies_index].rstrip()
+	fr_index = readme_content.index(fr_title)
+	fr_demo_index = readme_content.index("### Démo")
+
+	en_index = readme_content.index(en_title)
+	en_desc_index = en_index + len(en_title)
+	en_content_index = readme_content.index("### Content", en_desc_index)
+	en_demo_index = readme_content.index("### Demo", en_index)
+
+	short_description = readme_content[en_desc_index: en_content_index]
+	short_description = short_description.replace(_NEW_LINE, " ")
+	short_description = short_description.replace("`", "")
+	short_description = short_description.strip()
+
+	long_description = readme_content[fr_index: fr_demo_index]\
+		+ readme_content[en_index:en_demo_index].rstrip()
+
+	return short_description, long_description
 
 
 def _make_requirement_list():
@@ -23,7 +38,7 @@ def _make_requirement_list():
 			_MODE_R, encoding=_ENCODING_UTF8) as req_file:
 		req_str = req_file.read()
 
-	raw_requirements = req_str.split("\n")
+	raw_requirements = req_str.split(_NEW_LINE)
 
 	requirements = list()
 	for requirement in raw_requirements:
@@ -34,12 +49,14 @@ def _make_requirement_list():
 
 
 if __name__ == "__main__":
+	short_desc, long_desc = _make_descriptions()
+
 	setuptools.setup(
 		name = "repr_rw",
 		version = "1.0.4",
 		author = "Guyllaume Rousseau",
-		description = "This library writes Python object representations in a text file and reads the file to recreate the objects. An object representation is a string returned by function repr.",
-		long_description = _make_long_description(),
+		description = short_desc,
+		long_description = long_desc,
 		long_description_content_type = "text/markdown",
 		url = "https://github.com/GRV96/repr_rw",
 		classifiers = [
