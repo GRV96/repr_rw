@@ -25,7 +25,7 @@ def _ensure_is_path(obj):
 
 	else:
 		raise TypeError(
-			"An argument of type string or pathlib.Path is expected.")
+			"An argument of type str or pathlib.Path is expected.")
 
 
 def _is_import_statement(some_str):
@@ -41,8 +41,8 @@ def _is_import_statement(some_str):
 def read_reprs(file_path, importations=None, ignore_except=False):
 	"""
 	If a text file contains the representation of Python objects, this function
-	can read it to recreate those objects. Each line must be a string returned
-	by function repr. Empty lines are ignored.
+	can read it to recreate those objects. Each line in the file must be a
+	string returned by function repr. Empty lines are ignored.
 
 	Recreating objects requires to import their class. For this purpose, you
 	need to provide a dictionary mapping the appropriate import statements
@@ -53,7 +53,7 @@ def read_reprs(file_path, importations=None, ignore_except=False):
 
 	Args:
 		file_path (str or pathlib.Path): the path to a text file that contains
-			object representations
+			object representations.
 		importations (dict): the import statements (keys, type str) and the
 			paths to imported classes (values, type str or pathlib.Path)
 			required to recreate the objects. Defaults to None.
@@ -61,10 +61,11 @@ def read_reprs(file_path, importations=None, ignore_except=False):
 			of object representations will be ignored. Defaults to False.
 
 	Returns:
-		list: the objects recreated from their representation
+		list: the objects recreated from their representation.
 
 	Raises:
-		ModuleNotFoundError: if argument importations contains a fault.
+		ModuleNotFoundError: if an importation statement contains a fault.
+		TypeError: if argument file_path is not of type str or pathlib.Path.
 		Exception: any exception raised upon the parsing of an object
 			representation if ignore_except is False.
 	"""
@@ -105,9 +106,12 @@ def write_reprs(file_path, objs):
 
 	Args:
 		file_path (str or pathlib.Path): the path to the text file that will
-			contain the object representations
+			contain the object representations.
 		objs (list, set or tuple): the objects whose representation will be
-			written
+			written.
+
+	Raises:
+		TypeError: if argument file_path is not of type str or pathlib.Path.
 	"""
 	file_path = _ensure_is_path(file_path)
 
