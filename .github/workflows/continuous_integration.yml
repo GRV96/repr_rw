@@ -9,6 +9,13 @@ on:
       - main
 
 jobs:
+  test_demos_no_error:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+      - name: Test the demos
+        run: python3 .github/workflows/test_demos_no_error.py
   test_pypi_package_build:
     runs-on: ubuntu-latest
     steps:
