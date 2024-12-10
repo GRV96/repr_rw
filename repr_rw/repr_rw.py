@@ -40,31 +40,35 @@ def _is_import_statement(some_str):
 
 def read_reprs(file_path, importations=None, ignore_except=False):
 	"""
-	If a text file contains the representation of Python objects, this function
-	can read it to recreate those objects. Each line in the file must be a
-	string returned by function repr. Empty lines are ignored.
+	If a text file contains the representation of Python objects, this
+	generator can read it to recreate those objects. Each line in the file
+	must be a string returned by function repr. Empty lines are ignored. Each
+	iteration of this generator yields one object.
 
 	Recreating objects requires to import their class. For this purpose, you
 	need to provide a dictionary mapping the appropriate import statements
-	(keys, type str) to the path to the imported class (value, type str or
-	pathlib.Path). However, if the imported class is from a built-in module or
-	the standard library, set the value to None. Statements that are not
-	importations will not be executed.
+	(keys, type str) to the path (value, type str or pathlib.Path) to the
+	parent directory of the class's module or package. However, if the imported
+	class is from a built-in module or the standard library, set the value to
+	None. Statements that are not importations will not be executed.
 
-	Args:
+	Parameters:
 		file_path (str or pathlib.Path): the path to a text file that contains
 			object representations.
 		importations (dict): the import statements (keys, type str) and the
-			paths to imported classes (values, type str or pathlib.Path)
-			required to recreate the objects. Defaults to None.
+			paths (values, type str or pathlib.Path) required to perform the
+			importations. Defaults to None.
 		ignore_except (bool): If it is True, exceptions raised upon the parsing
-			of object representations will be ignored. Defaults to False.
+			of object representations will be ignored, and the involved objects
+			will not be recreated. Defaults to False.
 
-	Returns:
-		list: the objects recreated from their representation.
+	Yields:
+		an object recreated from its representation.
 
 	Raises:
-		ModuleNotFoundError: if an importation statement contains a fault.
+		FileNotFoundError: if argument file_path does not exist.
+		ModuleNotFoundError: if an importation statement is missing or
+			contains a fault.
 		TypeError: if argument file_path is not of type str or pathlib.Path.
 		Exception: any exception raised upon the parsing of an object
 			representation if ignore_except is False.
@@ -81,21 +85,13 @@ def read_reprs(file_path, importations=None, ignore_except=False):
 	file_path = _ensure_is_path(file_path)
 
 	with file_path.open(mode=_MODE_R, encoding=_ENCODING_UTF8) as file:
-		text = file.read()
-
-	raw_lines = text.split(_NEW_LINE)
-
-	objs = list()
-
-	for line in raw_lines:
-		if len(line) >= 1:
-			try:
-				objs.append(eval(line))
-			except Exception as e:
-				if not ignore_except:
-					raise e
-
-	return objs
+		for obj_repr in file: # The iterator yields one line at the time.
+			if len(obj_repr) >= 1:
+				try:
+					yield eval(obj_repr)
+				except Exception as e:
+					if not ignore_except:
+						raise e
 
 
 def write_reprs(file_path, objs):
@@ -104,11 +100,11 @@ def write_reprs(file_path, objs):
 	string returned by function repr. If the file already exists, this function
 	overwrites it.
 
-	Args:
+	Parameters:
 		file_path (str or pathlib.Path): the path to the text file that will
 			contain the object representations.
-		objs (list, set or tuple): the objects whose representation will be
-			written.
+		objs (generator, list, set or tuple): the objects whose representation
+			will be written.
 
 	Raises:
 		TypeError: if argument file_path is not of type str or pathlib.Path.

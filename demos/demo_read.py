@@ -20,15 +20,18 @@ if not obj_path.exists():
 	sys.exit(1)
 
 importations = {
-	# The importation of Ajxo and Point requires the path to
+	# Importing Ajxo from demo_package requires the path to
 	# the repository's root, which is not included in sys.path.
-	"from demo_package import Ajxo, Point": _REPO_ROOT,
+	"from demo_package import Ajxo": _REPO_ROOT,
+	# Importing Point from its module requires the path to
+	# directory demo_package, which is not included in sys.path.
+	"from point import Point": _REPO_ROOT/"demo_package",
 	# Since pathlib is a built-in module, its importation
 	# does not require a path.
 	"from pathlib import PosixPath, WindowsPath": None
 }
-objs = read_reprs(obj_path, importations)
+obj_generator = read_reprs(obj_path, importations)
 
-print("Read objects:")
-for obj in objs:
+print("Objects read:")
+for obj in obj_generator:
 	print(f"{obj} {type(obj)}")
