@@ -59,7 +59,8 @@ def read_reprs(file_path, importations=None, ignore_except=False):
 			paths (values, type str or pathlib.Path) required to perform the
 			importations. Defaults to None.
 		ignore_except (bool): If it is True, exceptions raised upon the parsing
-			of object representations will be ignored. Defaults to False.
+			of object representations will be ignored, and the involved objects
+			will not be recreated. Defaults to False.
 
 	Yields:
 		an object recreated from its representation.
