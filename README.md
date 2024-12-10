@@ -12,9 +12,10 @@ La fonction `write_reprs` écrit la représentation d'objets Python dans un
 fichier texte. Chaque ligne du fichier est une représentation d'objet. Si le
 fichier spécifié existe déjà, cette fonction l'écrase.
 
-La fonction `read_reprs` lit un fichier texte contenant des représentations
+Le générateur `read_reprs` lit un fichier texte contenant des représentations
 d'objet Python dans le but de recréer ces objets. Chaque ligne du fichier doit
-être une représentation d'objet. Les lignes vides sont ignorées.
+être une représentation d'objet. Les lignes vides sont ignorées. Chaque
+itération de ce générateur produit un objet.
 
 Consultez la documentation des fonctions et les démos dans le dépôt de code
 source pour plus d'informations.
@@ -56,9 +57,10 @@ Function `write_reprs` writes the representation of Python objects in a text
 file. Each line in the file is an object representation. If the specified file
 already exists, this function overwrites it.
 
-Function `read_reprs` reads a text file that contains the representation of
+Generator `read_reprs` reads a text file that contains the representation of
 Python objects in order to recreate those objects. Each line in the file must be
-an object representation. Empty lines are ignored.
+an object representation. Empty lines are ignored. Each iteration of this
+generator yields one object.
 
 Consult the functions' documentation and the demos in the source code
 repository for the complete information.
