@@ -1,7 +1,7 @@
-from pathlib import\
-	Path
 import re
 
+from strath import\
+	ensure_path_is_pathlib
 from syspathmodif import\
 	sp_append,\
 	sp_remove
@@ -14,18 +14,6 @@ _NEW_LINE = "\n"
 
 _REGEX_IMPORT = "import .+"
 _REGEX_FROM_IMPORT = "from .+ import .+"
-
-
-def _ensure_is_path(obj):
-	if isinstance(obj, Path):
-		return obj
-
-	elif isinstance(obj, str):
-		return Path(obj)
-
-	else:
-		raise TypeError(
-			"An argument of type str or pathlib.Path is expected.")
 
 
 def _is_import_statement(some_str):
@@ -82,7 +70,7 @@ def read_reprs(file_path, importations=None, ignore_except=False):
 				if was_path_appended:
 					sp_remove(path)
 
-	file_path = _ensure_is_path(file_path)
+	file_path = ensure_path_is_pathlib(file_path, False)
 
 	with file_path.open(mode=_MODE_R, encoding=_ENCODING_UTF8) as file:
 		for obj_repr in file: # The iterator yields one line at the time.
@@ -109,7 +97,7 @@ def write_reprs(file_path, objs):
 	Raises:
 		TypeError: if argument file_path is not of type str or pathlib.Path.
 	"""
-	file_path = _ensure_is_path(file_path)
+	file_path = ensure_path_is_pathlib(file_path, False)
 
 	with file_path.open(mode=_MODE_W, encoding=_ENCODING_UTF8) as file:
 		for obj in objs:
