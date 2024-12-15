@@ -16,8 +16,10 @@ jobs:
         uses: actions/checkout@v2
       - name: Intall dependencies
         run: pip3 install --no-cache-dir -r requirements.txt
-      - name: Test the demos
-        run: python3 .github/workflows/test_demos_no_error.py
+      - name: Test the writing demo
+        run: python3 demos/demo_write.py
+      - name: Test the reading demo
+        run: python3 demos/demo_read.py
   test_pypi_package_build:
     runs-on: ubuntu-latest
     steps:
