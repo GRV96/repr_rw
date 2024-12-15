@@ -1,5 +1,6 @@
 import re
 
+# strath is a dependency of syspathmodif.
 from strath import\
 	ensure_path_is_pathlib
 from syspathmodif import\
