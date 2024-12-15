@@ -3,7 +3,7 @@ from syspathmodif import\
 	sp_append,\
 	sp_remove
 
-_LOCAL_DIR = Path(__file__).parent
+_LOCAL_DIR = Path(__file__).parent.resolve()
 _REPO_ROOT = _LOCAL_DIR.parent
 
 sp_append(_REPO_ROOT)
