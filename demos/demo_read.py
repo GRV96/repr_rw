@@ -26,7 +26,7 @@ importations = {
 	# Importing Point from its module requires the path to
 	# directory demo_package, which is not included in sys.path.
 	"from point import Point": _REPO_ROOT/"demo_package",
-	# Since pathlib is a built-in module, its importation
+	# Since pathlib is a standard module, its importation
 	# does not require a path.
 	"from pathlib import PosixPath, WindowsPath": None
 }
