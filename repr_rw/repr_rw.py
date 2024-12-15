@@ -38,8 +38,8 @@ def read_reprs(file_path, importations=None, ignore_except=False):
 	need to provide a dictionary mapping the appropriate import statements
 	(keys, type str) to the path (value, type str or pathlib.Path) to the
 	parent directory of the class's module or package. However, if the imported
-	class is from a built-in module or the standard library, set the value to
-	None. Statements that are not importations will not be executed.
+	class is from the standard library, set the value to None. Statements that
+	are not importations will not be executed.
 
 	Parameters:
 		file_path (str or pathlib.Path): the path to a text file that contains
