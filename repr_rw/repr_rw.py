@@ -21,9 +21,10 @@ def _is_valid_import_statement(some_str):
 	return regex_match is not None
 
 
-def _raise_import_statement_value_error(bad_import):
-	raise ValueError(f"Import statements must match regex \""
-		+ _REGEX_FROM_IMPORT + "\". Recieved \"" + bad_import + "\".")
+def _raise_import_statement_value_error(importation):
+	if not _is_valid_import_statement(importation):
+		raise ValueError(f"Import statements must match regex \""
+			+ _REGEX_FROM_IMPORT + "\". Recieved \"" + importation + "\".")
 
 
 def read_reprs(file_path, importations=None, ignore_except=False):
@@ -68,8 +69,7 @@ def read_reprs(file_path, importations=None, ignore_except=False):
 	"""
 	if importations is not None:
 		for importation, path in importations.items():
-			if not _is_valid_import_statement(importation):
-				_raise_import_statement_value_error(importation)
+			_raise_import_statement_value_error(importation)
 
 			was_path_appended = sp_append(path)
 			exec(importation)
