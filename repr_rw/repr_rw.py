@@ -14,13 +14,16 @@ _MODE_W = "w"
 _NEW_LINE = "\n"
 
 _REGEX_FROM_IMPORT = "from .+ import .+"
-_NON_MATCHING_IMPORT_MSG =\
-	f"Import statements must match regex \"{_REGEX_FROM_IMPORT}\"."
 
 
 def _is_valid_import_statement(some_str):
 	regex_match = re.match(_REGEX_FROM_IMPORT, some_str)
 	return regex_match is not None
+
+
+def _raise_import_statement_value_error(bad_import):
+	raise ValueError(f"Import statements must match regex \""
+		+ _REGEX_FROM_IMPORT + "\". Recieved \"" + bad_import + "\".")
 
 
 def read_reprs(file_path, importations=None, ignore_except=False):
@@ -34,9 +37,8 @@ def read_reprs(file_path, importations=None, ignore_except=False):
 	need to provide a dictionary mapping the appropriate import statements
 	(keys, type str) to the path (value, type str or pathlib.Path) to the
 	parent directory of the class's module or package. However, if the imported
-	class is from the standard library, set the value to None. Only import
-	statements matching regular expression "from .+ import .+" will be
-	executed.
+	class is from the standard library, set the value to None. All import
+	statements must match regular expression "from .+ import .+".
 
 	Args:
 		file_path (str or pathlib.Path): the path to a text file that contains
@@ -59,13 +61,15 @@ def read_reprs(file_path, importations=None, ignore_except=False):
 			corresponding value in argument importations may be incorrect.
 		NameError: if a required class was not imported.
 		TypeError: if argument file_path is not of type str or pathlib.Path.
+		ValueError: if an import statement does not match regular expression
+			"from .+ import .+".
 		Exception: any exception raised upon the parsing of an object
 			representation if ignore_except is False.
 	"""
 	if importations is not None:
 		for importation, path in importations.items():
 			if not _is_valid_import_statement(importation):
-				raise ValueError(_NON_MATCHING_IMPORT_MSG)
+				_raise_import_statement_value_error(importation)
 
 			was_path_appended = sp_append(path)
 			exec(importation)
