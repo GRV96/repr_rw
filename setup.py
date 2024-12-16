@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
 	setuptools.setup(
 		name = "repr_rw",
-		version = "2.0.0",
+		version = "2.0.1",
 		author = "Guyllaume Rousseau",
 		description = short_desc,
 		long_description = long_desc,
@@ -69,6 +69,7 @@ if __name__ == "__main__":
 			"Topic :: Utilities"
 		],
 		install_requires = _make_requirement_list(),
-		packages = setuptools.find_packages(exclude=("demos", "demo_package",)),
+		packages = setuptools.find_packages(
+			exclude=(".github", "demos", "demo_package",)),
 		license = "MIT",
 		license_files = ("LICENSE",))
