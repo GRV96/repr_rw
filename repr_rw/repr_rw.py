@@ -50,9 +50,12 @@ def read_reprs(file_path, importations=None, ignore_except=False):
 		an object recreated from its representation.
 
 	Raises:
-		FileNotFoundError: if argument file_path does not exist.
-		ModuleNotFoundError: if an importation statement is missing or
-			contains a fault.
+		FileNotFoundError: if the file indicated by argument file_path does
+			not exist.
+		ImportError: if an import statement contains a fault.
+		ModuleNotFoundError: if an imported module cannot be found. The
+			corresponding value in argument importations may be incorrect.
+		NameError: if a required class was not imported.
 		TypeError: if argument file_path is not of type str or pathlib.Path.
 		Exception: any exception raised upon the parsing of an object
 			representation if ignore_except is False.
