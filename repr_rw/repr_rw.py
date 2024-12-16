@@ -13,18 +13,12 @@ _MODE_R = "r"
 _MODE_W = "w"
 _NEW_LINE = "\n"
 
-_REGEX_IMPORT = "import .+"
 _REGEX_FROM_IMPORT = "from .+ import .+"
 
 
-def _is_import_statement(some_str):
-	if re.match(_REGEX_IMPORT, some_str) is not None:
-		return True
-
-	if re.match(_REGEX_FROM_IMPORT, some_str) is not None:
-		return True
-
-	return False
+def _is_valid_import_statement(some_str):
+	regex_match = re.match(_REGEX_FROM_IMPORT, some_str)
+	return regex_match is not None
 
 
 def read_reprs(file_path, importations=None, ignore_except=False):
@@ -38,10 +32,11 @@ def read_reprs(file_path, importations=None, ignore_except=False):
 	need to provide a dictionary mapping the appropriate import statements
 	(keys, type str) to the path (value, type str or pathlib.Path) to the
 	parent directory of the class's module or package. However, if the imported
-	class is from the standard library, set the value to None. Statements that
-	are not importations will not be executed.
+	class is from the standard library, set the value to None. Only import
+	statements matching regular expression "from .+ import .+" will be
+	executed.
 
-	Parameters:
+	Args:
 		file_path (str or pathlib.Path): the path to a text file that contains
 			object representations.
 		importations (dict): the import statements (keys, type str) and the
@@ -64,7 +59,7 @@ def read_reprs(file_path, importations=None, ignore_except=False):
 	"""
 	if importations is not None:
 		for importation, path in importations.items():
-			if _is_import_statement(importation):
+			if _is_valid_import_statement(importation):
 				was_path_appended = sp_append(path)
 				exec(importation)
 
@@ -89,7 +84,7 @@ def write_reprs(file_path, objs):
 	string returned by function repr. If the file already exists, this function
 	overwrites it.
 
-	Parameters:
+	Args:
 		file_path (str or pathlib.Path): the path to the text file that will
 			contain the object representations.
 		objs (generator, list, set or tuple): the objects whose representation
