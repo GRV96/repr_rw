@@ -14,6 +14,8 @@ _MODE_W = "w"
 _NEW_LINE = "\n"
 
 _REGEX_FROM_IMPORT = "from .+ import .+"
+_NON_MATCHING_IMPORT_MSG =\
+	f"Import statements must match regex \"{_REGEX_FROM_IMPORT}\"."
 
 
 def _is_valid_import_statement(some_str):
@@ -62,12 +64,14 @@ def read_reprs(file_path, importations=None, ignore_except=False):
 	"""
 	if importations is not None:
 		for importation, path in importations.items():
-			if _is_valid_import_statement(importation):
-				was_path_appended = sp_append(path)
-				exec(importation)
+			if not _is_valid_import_statement(importation):
+				raise ValueError(_NON_MATCHING_IMPORT_MSG)
 
-				if was_path_appended:
-					sp_remove(path)
+			was_path_appended = sp_append(path)
+			exec(importation)
+
+			if was_path_appended:
+				sp_remove(path)
 
 	file_path = ensure_path_is_pathlib(file_path, False)
 
