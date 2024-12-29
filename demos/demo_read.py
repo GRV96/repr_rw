@@ -27,7 +27,12 @@ importations = [
 	"from pathlib import PosixPath, WindowsPath"
 	# Built-in types tuple and list do not require a path.
 ]
-paths = (_REPO_ROOT, _REPO_ROOT/"demo_package")
+paths = (
+	# For Ajxo's package
+	_REPO_ROOT,
+	# For Point's module
+	_REPO_ROOT/"demo_package"
+)
 
 
 # In this example, read_reprs handles the paths.
