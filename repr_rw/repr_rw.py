@@ -33,19 +33,17 @@ def read_reprs(file_path, importations=None, paths=None):
 	must be a string returned by function repr. Empty lines are ignored. Each
 	iteration of this generator yields one object.
 
-	Recreating objects requires to import their class. For this purpose, you
-	need to provide the appropriate import statements and the paths to the
-	parent directory of the classes' module or package. All import statements
-	must match regular expression "from .+ import .+".
-	
-	However, you do not need to provide a path to an imported class's package
-	or module if it is from the standard library or a project dependency.
+	Recreating objects requires to import their class unless they all are of a
+	built-in type. For this purpose, you need to provide the necessary import
+	statements and the paths to the parent directory of the imported classes'
+	module or package. All import statements must match regular expression
+	"from .+ import .+".
 
 	Args:
 		file_path (str or pathlib.Path): the path to a text file that contains
 			object representations.
-		importations (generator, list, set or tuple): class import statements
-			(str). Defaults to None.
+		importations (generator, list, set or tuple):
+			class import statements (str). Defaults to None.
 		paths (generator, list, set or tuple): the paths (str or pathlib.Path)
 			to the imported classes. Defaults to None.
 
@@ -55,11 +53,12 @@ def read_reprs(file_path, importations=None, paths=None):
 	Raises:
 		FileNotFoundError: if the file indicated by argument file_path does
 			not exist.
-		ImportError: if an import statement contains a fault.
-		ModuleNotFoundError: if an imported module cannot be found. The
-			corresponding value in argument importations may be incorrect.
+		ImportError: if an import statement is incorrect.
+		ModuleNotFoundError: if an imported class' module or package cannot
+			be found. An item in argument paths may be incorrect.
 		NameError: if a required class was not imported.
-		TypeError: if argument file_path is not of type str or pathlib.Path.
+		TypeError: if argument file_path or an item in argument paths is not
+			of type str or pathlib.Path.
 		ValueError: if an import statement does not match regular expression
 			"from .+ import .+".
 		Exception: any exception raised upon the parsing of an object
