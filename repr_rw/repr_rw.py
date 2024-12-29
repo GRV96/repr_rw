@@ -33,14 +33,18 @@ def read_reprs(file_path, importations=None, paths=None):
 	must be a string returned by function repr. Empty lines are ignored. Each
 	iteration of this generator yields one object.
 
-	Recreating objects requires to import their class unless they all are of a
+	Recreating objects requires to import their class unless they are of a
 	built-in type. For this purpose, you need to provide the necessary import
-	statements and the paths to the parent directory of the imported classes'
-	module or package. All import statements must match regular expression
-	"from .+ import .+".
-	
-	However, you do not need to provide a path for standard and installed
-	packages.
+	statements as character strings. All import statements must match regular
+	expression "from .+ import .+".
+
+	The imported classes' package or module must be accessible for importation.
+	It is already the case for standard and installed packages. For classes
+	from other sources, you need to include the path to its package's or
+	module's parent directory in list sys.path. If you provide the required
+	paths to this generator, it will add them to sys.path, perform the imports
+	and remove the paths from sys.path. If, instead, you choose to handle the
+	paths out of this generator, you should not provide any path.
 
 	Args:
 		file_path (str or pathlib.Path): the path to a text file that contains
