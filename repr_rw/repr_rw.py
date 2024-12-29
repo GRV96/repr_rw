@@ -4,8 +4,7 @@ import re
 from strath import\
 	ensure_path_is_pathlib
 from syspathmodif import\
-	sp_append,\
-	sp_remove
+	SysPathBundle
 
 
 _ENCODING_UTF8 = "utf-8"
@@ -27,29 +26,33 @@ def _raise_import_statement_value_error(importation):
 			+ _REGEX_FROM_IMPORT + "\". Recieved \"" + importation + "\".")
 
 
-def read_reprs(file_path, importations=None, ignore_except=False):
+def read_reprs(file_path, importations=None, paths=None):
 	"""
 	If a text file contains the representation of Python objects, this
 	generator can read it to recreate those objects. Each line in the file
 	must be a string returned by function repr. Empty lines are ignored. Each
 	iteration of this generator yields one object.
 
-	Recreating objects requires to import their class. For this purpose, you
-	need to provide a dictionary mapping the appropriate import statements
-	(keys, type str) to the path (value, type str or pathlib.Path) to the
-	parent directory of the class's module or package. However, if the imported
-	class is from the standard library, set the value to None. All import
-	statements must match regular expression "from .+ import .+".
+	Recreating objects requires to import their class unless they are of a
+	built-in type. For this purpose, you need to provide the necessary import
+	statements as character strings. All import statements must match regular
+	expression "from .+ import .+".
+
+	The imported classes' package or module must be accessible for importation.
+	It is already the case for standard and installed packages. For classes
+	from other sources, you need to include the path to its package's or
+	module's parent directory in list sys.path. If you provide the required
+	paths to this generator, it will add them to sys.path, perform the imports
+	and remove the paths from sys.path. If, instead, you choose to handle the
+	paths out of this generator, you should not provide any path.
 
 	Args:
 		file_path (str or pathlib.Path): the path to a text file that contains
 			object representations.
-		importations (dict): the import statements (keys, type str) and the
-			paths (values, type str or pathlib.Path) required to perform the
-			importations. Defaults to None.
-		ignore_except (bool): If it is True, exceptions raised upon the parsing
-			of object representations will be ignored, and the involved objects
-			will not be recreated. Defaults to False.
+		importations (generator, list, set or tuple):
+			class import statements (str). Defaults to None.
+		paths (generator, list, set or tuple): the paths (str or pathlib.Path)
+			to the imported classes. Defaults to None.
 
 	Yields:
 		an object recreated from its representation.
@@ -57,36 +60,38 @@ def read_reprs(file_path, importations=None, ignore_except=False):
 	Raises:
 		FileNotFoundError: if the file indicated by argument file_path does
 			not exist.
-		ImportError: if an import statement contains a fault.
-		ModuleNotFoundError: if an imported module cannot be found. The
-			corresponding value in argument importations may be incorrect.
+		ImportError: if an import statement is incorrect.
+		ModuleNotFoundError: if an imported class' module or package cannot
+			be found. An item in argument paths may be incorrect.
 		NameError: if a required class was not imported.
-		TypeError: if argument file_path is not of type str or pathlib.Path.
+		TypeError: if argument file_path or an item in argument paths is not
+			of type str or pathlib.Path.
 		ValueError: if an import statement does not match regular expression
 			"from .+ import .+".
 		Exception: any exception raised upon the parsing of an object
-			representation if ignore_except is False.
+			representation.
 	"""
 	if importations is not None:
-		for importation, path in importations.items():
-			_raise_import_statement_value_error(importation)
+		if paths is not None:
+			bundle = SysPathBundle(paths)
 
-			was_path_appended = sp_append(path)
+		for importation in importations:
+			_raise_import_statement_value_error(importation)
 			exec(importation)
 
-			if was_path_appended:
-				sp_remove(path)
+		if paths is not None:
+			bundle.clear()
+			del bundle
 
 	file_path = ensure_path_is_pathlib(file_path, False)
 
 	with file_path.open(mode=_MODE_R, encoding=_ENCODING_UTF8) as file:
-		for obj_repr in file: # The iterator yields one line at the time.
+		for obj_repr in file:
+			# The iterator yields one line at the time, including \n.
+			obj_repr = obj_repr.strip()
+
 			if len(obj_repr) >= 1:
-				try:
-					yield eval(obj_repr)
-				except Exception as e:
-					if not ignore_except:
-						raise e
+				yield eval(obj_repr)
 
 
 def write_reprs(file_path, objs):

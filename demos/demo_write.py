@@ -22,7 +22,8 @@ objs = [
 	Point(29, 7),
 	Point(461.28, 37.59),
 	Point(10.2, 83),
-	Path("some/directory/file.txt")
+	Path("some/directory/file.txt"),
+	(3.14159, "abc", 42, [1, 1, 2, 3, 5, 8, 13, 21])
 ]
 
 obj_path = _LOCAL_DIR/"objects.txt"
