@@ -22,7 +22,9 @@ if not obj_path.exists():
 importations = [
 	"from demo_package import Ajxo",
 	"from point import Point",
+	# Standard package pathlib does not require a path.
 	"from pathlib import PosixPath, WindowsPath"
+	# Built-in types tuple and list do not require a path.
 ]
 paths = [_REPO_ROOT, _REPO_ROOT/"demo_package"]
 obj_generator = read_reprs(obj_path, importations, paths)

@@ -38,6 +38,9 @@ def read_reprs(file_path, importations=None, paths=None):
 	statements and the paths to the parent directory of the imported classes'
 	module or package. All import statements must match regular expression
 	"from .+ import .+".
+	
+	However, you do not need to provide a path for standard and installed
+	packages.
 
 	Args:
 		file_path (str or pathlib.Path): the path to a text file that contains
