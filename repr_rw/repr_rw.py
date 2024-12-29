@@ -86,7 +86,10 @@ def read_reprs(file_path, importations=None, paths=None):
 	file_path = ensure_path_is_pathlib(file_path, False)
 
 	with file_path.open(mode=_MODE_R, encoding=_ENCODING_UTF8) as file:
-		for obj_repr in file: # The iterator yields one line at the time.
+		for obj_repr in file:
+			# The iterator yields one line at the time, including \n.
+			obj_repr = obj_repr.strip()
+
 			if len(obj_repr) >= 1:
 				yield eval(obj_repr)
 
