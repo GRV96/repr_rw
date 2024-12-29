@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
 	setuptools.setup(
 		name = "repr_rw",
-		version = "2.0.1",
+		version = "3.0.0",
 		author = "Guyllaume Rousseau",
 		description = short_desc,
 		long_description = long_desc,
