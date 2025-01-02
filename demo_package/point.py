@@ -15,3 +15,6 @@ class Point:
 	@property
 	def y(self):
 		return self._y
+
+
+__all__ = [Point.__name__]

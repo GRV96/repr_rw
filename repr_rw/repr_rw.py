@@ -1,3 +1,5 @@
+# __all__ declared at the module's end
+
 import re
 
 # strath is a dependency of syspathmodif.
@@ -114,3 +116,9 @@ def write_reprs(file_path, objs):
 	with file_path.open(mode=_MODE_W, encoding=_ENCODING_UTF8) as file:
 		for obj in objs:
 			file.write(repr(obj) + _NEW_LINE)
+
+
+__all__ = [
+	read_reprs.__name__,
+	write_reprs.__name__
+]
