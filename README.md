@@ -17,8 +17,8 @@ d'objet Python dans le but de recréer ces objets. Chaque ligne du fichier doit
 être une représentation d'objet. Les lignes vides sont ignorées. Chaque
 itération de ce générateur produit un objet.
 
-Consultez la documentation des fonctions et les démos dans le dépôt de code
-source pour plus d'informations.
+Pour plus d'informations, consultez la documentation des fonctions et les démos
+dans le dépôt de code source.
 
 ### Dépendances
 
@@ -58,12 +58,12 @@ file. Each line in the file is an object representation. If the specified file
 already exists, this function overwrites it.
 
 Generator `read_reprs` reads a text file that contains the representation of
-Python objects in order to recreate those objects. Each line in the file must be
-an object representation. Empty lines are ignored. Each iteration of this
+Python objects in order to recreate those objects. Each line in the file must
+be an object representation. Empty lines are ignored. Each iteration of this
 generator yields one object.
 
-Consult the functions' documentation and the demos in the source code
-repository for the complete information.
+For more information, consult the functions' documentation and the demos in the
+source code repository.
 
 ### Dependencies
 
