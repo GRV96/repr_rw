@@ -24,7 +24,7 @@ objs = [
 	Point(461.28, 37.59),
 	Point(10.2, 83),
 	Path("some/directory/file.txt"),
-	SysPathBundle((_REPO_ROOT, _LOCAL_DIR), True),
+	SysPathBundle((_REPO_ROOT, _LOCAL_DIR, _REPO_ROOT/"repr_rw"), True),
 	(3.14159, "abc", 42, [1, 1, 2, 3, 5, 8, 13, 21])
 ]
 
