@@ -75,14 +75,13 @@ def read_reprs(file_path, importations=None, paths=None):
 	"""
 	if importations is not None:
 		if paths is not None:
-			bundle = SysPathBundle(paths)
+			bundle = SysPathBundle(paths, True)
 
 		for importation in importations:
 			_raise_import_statement_value_error(importation)
 			exec(importation)
 
 		if paths is not None:
-			bundle.clear()
 			del bundle
 
 	file_path = ensure_path_is_pathlib(file_path, False)

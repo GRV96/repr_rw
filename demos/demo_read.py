@@ -25,6 +25,7 @@ importations = [
 	"from point import Point",
 	# Standard package pathlib does not require a path.
 	"from pathlib import PosixPath, WindowsPath"
+	# SysPathBundle is imported in read_reprs' module.
 	# Built-in types tuple and list do not require a path.
 ]
 paths = (
