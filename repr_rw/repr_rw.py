@@ -42,7 +42,7 @@ def read_reprs(file_path, importations=None, paths=None):
 
 	The imported classes' package or module must be accessible for importation.
 	It is already the case for standard and installed packages. For classes
-	from other sources, you need to include the path to its package's or
+	from other sources, you need to include the path to their package's or
 	module's parent directory in list sys.path. If you provide the required
 	paths to this generator, it will add them to sys.path, perform the imports
 	and remove the paths from sys.path. If, instead, you choose to handle the
@@ -64,7 +64,7 @@ def read_reprs(file_path, importations=None, paths=None):
 			not exist.
 		ImportError: if an import statement is incorrect.
 		ModuleNotFoundError: if an imported class' module or package cannot
-			be found. An item in argument paths may be incorrect.
+			be found.
 		NameError: if a required class was not imported.
 		TypeError: if argument file_path or an item in argument paths is not
 			of type str or pathlib.Path.
