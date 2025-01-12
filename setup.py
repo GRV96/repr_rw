@@ -15,20 +15,20 @@ def _make_descriptions():
 	en_title = "## ENGLISH"
 
 	fr_index = readme_content.index(fr_title)
-	fr_dependencies_index = readme_content.index("### Dépendances")
+	fr_end_index = readme_content.index("#### Importation")
 
 	en_index = readme_content.index(en_title)
 	en_desc_index = en_index + len(en_title)
 	en_content_index = readme_content.index("### Content", en_desc_index)
-	en_dependencies_index = readme_content.index("### Dependencies", en_index)
+	en_end_index = readme_content.index("#### Importing", en_index)
 
 	short_description = readme_content[en_desc_index: en_content_index]
 	short_description = short_description.replace(_NEW_LINE, " ")
 	short_description = short_description.replace("`", "")
 	short_description = short_description.strip()
 
-	long_description = readme_content[fr_index: fr_dependencies_index]\
-		+ readme_content[en_index:en_dependencies_index].rstrip()
+	long_description = readme_content[fr_index: fr_end_index]\
+		+ readme_content[en_index:en_end_index].rstrip()
 
 	return short_description, long_description
 
