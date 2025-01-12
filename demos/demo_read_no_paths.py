@@ -19,7 +19,7 @@ with SysPathBundle(paths):
 
 	# Classes Ajxo and Point are not required in this script.
 	# The next import statements include demo_package and point in sys.modules.
-	# This ensures that identical import statements will work in read_reprs
+	# This ensures that they will be avialabe in read_reprs
 	# even though that function will not modify sys.path.
 	from demo_package import\
 		Ajxo
