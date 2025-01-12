@@ -20,6 +20,27 @@ itération de ce générateur produit un objet.
 Pour plus d'informations, consultez la documentation des fonctions et les démos
 dans le dépôt de code source.
 
+#### Importation de classes et modification de `sys.path`
+
+Recréer des objets requiert d'importer leur classe sauf s'ils sont d'un type
+natif (*built-in*). À cette fin, il faut fournir à `read_reprs` les
+instructions d'importation nécessaires en chaînes de caractères.
+
+Le paquet ou module des classes importées doit être accessible pour
+importation. C'est le cas des paquets standards et installés. Pour les classes
+d'autres sources, il faut inclure le chemin du dossier parent de leur paquet ou
+module dans la liste `sys.path`. Si des chemins sont fournis au générateur
+`read_reprs`, il les ajoute à `sys.path`, effectue les importations et enlève
+les chemins ajoutés de `sys.path`. L'utilisateur peut aussi modifier lui-même
+`sys.path` et ne pas fournir de chemins.
+
+Cependant, si un paquet ou module a été importé avant que `read_reprs` le
+fasse, inclure son chemin parent dans `sys.path` n'est pas nécessaire. Le
+dictionnaire `sys.modules` conserve les paquets et modules importés pour
+réutilisation, ce qui les rend disponibles dans tous les modules. Soyez prudent
+en profitant de cette fonctionnalité. Autrement, `read_reprs` risque de lever
+une exception `ModuleNotFoundError`.
+
 ### Dépendances
 
 Installez les dépendances avec cette commande.
@@ -72,6 +93,26 @@ generator yields one object.
 
 For more information, consult the functions' documentation and the demos in the
 source code repository.
+
+#### Importing classes and modifying `sys.path`
+
+Recreating objects requires to import their class unless they are of a built-in
+type. For this purpose, the user must provide the necessary import statements
+to `read_reprs` as character strings.
+
+The imported classes' package or module must be accessible for importation. It
+is already the case for standard and installed packages. For classes from other
+sources, the path to their package's or module's parent directory must be
+included in list `sys.path`. If paths are provided to generator `read_reprs`,
+it adds them to `sys.path`, performs the imports and removes the added paths
+from `sys.path`. The user can also modify `sys.path` themself and not provide
+any path.
+
+However, if a package or module has been imported before `read_reprs` does so,
+including its parent path in `sys.path` is not required. Dictionary
+`sys.modules` stores imported packages and modules for reuse, which makes them
+available in all modules. Be careful when benefitting from this feature.
+Otherwise, `read_reprs` may raise a `ModuleNotFoundError`.
 
 ### Dependencies
 
