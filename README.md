@@ -13,7 +13,7 @@ fichier texte. Chaque ligne du fichier est une représentation d'objet. Si le
 fichier spécifié existe déjà, cette fonction l'écrase.
 
 Le générateur `read_reprs` lit un fichier texte contenant des représentations
-d'objet Python dans le but de recréer ces objets. Chaque ligne du fichier doit
+d'objets Python dans le but de recréer ces objets. Chaque ligne du fichier doit
 être une représentation d'objet. Les lignes vides sont ignorées. Chaque
 itération de ce générateur produit un objet.
 
