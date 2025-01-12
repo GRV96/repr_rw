@@ -18,8 +18,8 @@ with SysPathBundle(paths):
 		read_reprs
 
 	# Classes Ajxo and Point are not required in this script.
-	# Importing them ensures their presence in sys.modules.
-	# Thus, the same import statements will work in read_reprs
+	# The next import statements include demo_package and point in sys.modules.
+	# This ensures that identical import statements will work in read_reprs
 	# even though that function will not modify sys.path.
 	from demo_package import\
 		Ajxo
@@ -41,6 +41,7 @@ importations = [
 	"from pathlib import PosixPath, WindowsPath"
 ]
 
+# No paths will be added to sys.path.
 obj_generator = read_reprs(obj_path, importations)
 
 print("Objects read:")
