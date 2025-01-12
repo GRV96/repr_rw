@@ -45,6 +45,14 @@ produit par cet autre script.
 python demos/demo_read.py
 ```
 
+Le script `demo_read_no_paths.py` montre comment la fonction `read_reprs` peut
+fonctionner sans ajouter de chemins à `sys.path`. Ce script aussi a besoin du
+fichier produit par `demo_write.py`.
+
+```
+python demos/demo_read_no_paths.py
+```
+
 ## ENGLISH
 
 This library writes Python object representations in a text file and reads the
@@ -87,4 +95,11 @@ that other script.
 
 ```
 python demos/demo_read.py
+```
+
+Script `demo_read_no_paths.py` shows how function `read_reprs` can work without
+adding paths to `sys.path`. This script too needs the file made by `demo_read.py`.
+
+```
+python demos/demo_read_no_paths.py
 ```
