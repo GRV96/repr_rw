@@ -105,7 +105,7 @@ is the case for standard and installed packages. For classes from other
 sources, the path to their package's or module's parent directory must be
 included in list `sys.path`. If paths are provided to generator `read_reprs`,
 it adds them to `sys.path`, performs the imports and removes the added paths
-from `sys.path`. If, instead, you modify sys.path out of this generator, you
+from `sys.path`. If, instead, you modify `sys.path` out of this generator, you
 should not provide any path to `read_reprs`.
 
 However, if a package or module has been imported before `read_reprs` does so,
