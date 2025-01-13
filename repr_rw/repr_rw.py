@@ -47,6 +47,12 @@ def read_reprs(file_path, importations=None, paths=None):
 	them to sys.path, performs the imports and removes the paths from sys.path.
 	If, instead, you modify sys.path yourself, you should not provide paths.
 
+	However, if a package or module has been imported before this generator
+	does so, including its parent path in sys.path is not required. Dictionary
+	sys.modules stores imported packages and modules for reuse, which makes
+	them available in all modules. Be careful when benefitting from this
+	feature. Otherwise, this generator may raise a ModuleNotFoundError.
+
 	Args:
 		file_path (str or pathlib.Path): the path to a text file that contains
 			object representations.
