@@ -2,13 +2,13 @@
 
 ## FRANÇAIS
 
-Cette bibliothèque écrit la représentation d'objets Python dans un fichier
+Cette bibliothèque écrit des représentations d'objets Python dans un fichier
 texte et lit le fichier pour recréer les objets. Une représentation d'objet
 est une chaîne de caractères renvoyée par la fonction `repr`.
 
 ### Contenu
 
-La fonction `write_reprs` écrit la représentation d'objets Python dans un
+La fonction `write_reprs` écrit des représentations d'objets Python dans un
 fichier texte. Chaque ligne du fichier est une représentation d'objet. Si le
 fichier spécifié existe déjà, cette fonction l'écrase.
 
@@ -82,11 +82,11 @@ function `repr`.
 
 ### Content
 
-Function `write_reprs` writes the representation of Python objects in a text
+Function `write_reprs` writes the representations of Python objects in a text
 file. Each line in the file is an object representation. If the specified file
 already exists, this function overwrites it.
 
-Generator `read_reprs` reads a text file that contains the representation of
+Generator `read_reprs` reads a text file that contains the representations of
 Python objects in order to recreate those objects. Each line in the file must
 be an object representation. Empty lines are ignored. Each iteration of this
 generator yields one object.
