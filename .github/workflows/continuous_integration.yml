@@ -20,6 +20,8 @@ jobs:
         run: python3 demos/demo_write.py
       - name: Test the reading demo
         run: python3 demos/demo_read.py
+      - name: Test the reading demo with no paths given to read_reprs
+        run: python3 demos/demo_read_no_paths.py
   test_pypi_package_build:
     runs-on: ubuntu-latest
     steps:

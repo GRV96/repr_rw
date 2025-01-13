@@ -30,23 +30,28 @@ def _raise_import_statement_value_error(importation):
 
 def read_reprs(file_path, importations=None, paths=None):
 	"""
-	If a text file contains the representation of Python objects, this
-	generator can read it to recreate those objects. Each line in the file
-	must be a string returned by function repr. Empty lines are ignored. Each
-	iteration of this generator yields one object.
+	If a text file contains object representations, this generator can read it
+	to recreate the objects. Each line in the file must be a string returned by
+	function repr. Empty lines are ignored. Each iteration of this generator
+	yields one object.
 
 	Recreating objects requires to import their class unless they are of a
-	built-in type. For this purpose, you need to provide the necessary import
+	built-in type. For this purpose, the user must provide the necessary import
 	statements as character strings. All import statements must match regular
 	expression "from .+ import .+".
 
 	The imported classes' package or module must be accessible for importation.
-	It is already the case for standard and installed packages. For classes
-	from other sources, you need to include the path to its package's or
-	module's parent directory in list sys.path. If you provide the required
-	paths to this generator, it will add them to sys.path, perform the imports
-	and remove the paths from sys.path. If, instead, you choose to handle the
-	paths out of this generator, you should not provide any path.
+	It is the case for standard and installed packages. For classes from other
+	sources, the path to their package's or module's parent directory must be
+	included in list sys.path. If paths are provided to this generator, it adds
+	them to sys.path, performs the imports and removes the paths from sys.path.
+	If, instead, you modify sys.path yourself, you should not provide paths.
+
+	However, if a package or module has been imported before this generator
+	does so, including its parent path in sys.path is not required. Dictionary
+	sys.modules stores imported packages and modules for reuse, which makes
+	them available in all modules. Be careful when benefitting from this
+	feature. Otherwise, this generator may raise a ModuleNotFoundError.
 
 	Args:
 		file_path (str or pathlib.Path): the path to a text file that contains
@@ -64,7 +69,7 @@ def read_reprs(file_path, importations=None, paths=None):
 			not exist.
 		ImportError: if an import statement is incorrect.
 		ModuleNotFoundError: if an imported class' module or package cannot
-			be found. An item in argument paths may be incorrect.
+			be found.
 		NameError: if a required class was not imported.
 		TypeError: if argument file_path or an item in argument paths is not
 			of type str or pathlib.Path.
