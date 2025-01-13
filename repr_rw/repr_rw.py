@@ -30,10 +30,10 @@ def _raise_import_statement_value_error(importation):
 
 def read_reprs(file_path, importations=None, paths=None):
 	"""
-	If a text file contains the representation of Python objects, this
-	generator can read it to recreate those objects. Each line in the file
-	must be a string returned by function repr. Empty lines are ignored. Each
-	iteration of this generator yields one object.
+	If a text file contains object representations, this generator can read it
+	to recreate the objects. Each line in the file must be a string returned by
+	function repr. Empty lines are ignored. Each iteration of this generator
+	yields one object.
 
 	Recreating objects requires to import their class unless they are of a
 	built-in type. For this purpose, the user must provide the necessary import
@@ -45,8 +45,7 @@ def read_reprs(file_path, importations=None, paths=None):
 	sources, the path to their package's or module's parent directory must be
 	included in list sys.path. If paths are provided to this generator, it adds
 	them to sys.path, performs the imports and removes the paths from sys.path.
-	If, instead, you modify sys.path out of this generator, you should not
-	provide any path.
+	If, instead, you modify sys.path yourself, you should not provide paths.
 
 	Args:
 		file_path (str or pathlib.Path): the path to a text file that contains
