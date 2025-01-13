@@ -28,11 +28,11 @@ instructions d'importation nécessaires en chaînes de caractères.
 
 Le paquet ou module des classes importées doit être accessible pour
 importation. C'est le cas des paquets standards et installés. Pour les classes
-d'autres sources, il faut inclure le chemin du dossier parent de leur paquet ou
-module dans la liste `sys.path`. Si des chemins sont fournis au générateur
-`read_reprs`, il les ajoute à `sys.path`, effectue les importations et enlève
-les chemins ajoutés de `sys.path`. Si l'utilisateur modifie lui-même
-`sys.path`, il ne devrait pas fournir de chemins à `read_reprs`.
+provenant d'autres sources, il faut inclure le chemin du dossier parent de leur
+paquet ou module dans la liste `sys.path`. Si des chemins sont fournis au
+générateur `read_reprs`, il les ajoute à `sys.path`, effectue les importations
+puis enlève les chemins ajoutés de `sys.path`. Si l'utilisateur modifie
+lui-même `sys.path`, il ne devrait pas fournir de chemins à `read_reprs`.
 
 Cependant, si un paquet ou module a été importé avant que `read_reprs` le
 fasse, inclure son chemin parent dans `sys.path` n'est pas nécessaire. Le
@@ -105,8 +105,8 @@ is the case for standard and installed packages. For classes from other
 sources, the path to their package's or module's parent directory must be
 included in list `sys.path`. If paths are provided to generator `read_reprs`,
 it adds them to `sys.path`, performs the imports and removes the added paths
-from `sys.path`. If, instead, you modify `sys.path` out of this generator, you
-should not provide any path to `read_reprs`.
+from `sys.path`. If, instead, you modify yourself `sys.path`, you should not
+provide any path to `read_reprs`.
 
 However, if a package or module has been imported before `read_reprs` does so,
 including its parent path in `sys.path` is not required. Dictionary
