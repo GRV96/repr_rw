@@ -44,7 +44,7 @@ une exception `ModuleNotFoundError`.
 La bibliothèque `syspathmodif`, une dépendance de `repr_rw`, offre la fonction
 `sm_contains`, qui indique si `sys.modules` contient le module ou paquet dont
 le nom est donné en argument. Si `sm_contains` renvoie vrai (`True`), on peut
-omettre d'inclure le chemin parent du module ou paquet concerné dans
+importer le module ou paquet concerné sans ajouter son chemin parent à
 `sys.path`.
 
 ### Dépendances
@@ -123,7 +123,7 @@ Otherwise, `read_reprs` may raise a `ModuleNotFoundError`.
 Library `syspathmodif`, a dependency of `repr_rw`, offers function
 `sm_contains`, which indicates whether `sys.modules` contains the module or
 package whose name is given as argument. If `sm_contains` returns `True`, you
-can omit including the concerned module's or package's parent path in
+can import the concerned module or package without adding its parent path to
 `sys.path`.
 
 ### Dependencies
