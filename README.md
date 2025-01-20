@@ -26,18 +26,18 @@ Recréer des objets requiert d'importer leur classe sauf s'ils sont d'un type
 natif (*built-in*). À cette fin, il faut fournir à `read_reprs` les
 instructions d'importation nécessaires en chaînes de caractères.
 
-Le paquet ou module des classes importées doit être accessible pour
-importation. C'est le cas des paquets standards et installés. Pour les classes
-provenant d'autres sources, il faut inclure le chemin du dossier parent de leur
-paquet ou module dans la liste `sys.path`. Si des chemins sont fournis au
-générateur `read_reprs`, il les ajoute à `sys.path`, effectue les importations
-puis enlève les chemins ajoutés de `sys.path`. Si l'utilisateur modifie
-lui-même `sys.path`, il ne devrait pas fournir de chemins à `read_reprs`.
+Le module ou paquet des classes importées doit être importable. C'est le cas
+des paquets standards et installés. Pour les classes provenant d'autres
+sources, il faut inclure le chemin du dossier parent de leur module ou paquet
+dans la liste `sys.path`. Si des chemins sont fournis au générateur
+`read_reprs`, il les ajoute à `sys.path`, effectue les importations puis enlève
+les chemins ajoutés de `sys.path`. Si l'utilisateur modifie lui-même
+`sys.path`, il ne devrait pas fournir de chemins à `read_reprs`.
 
-Cependant, si un paquet ou module a été importé avant que `read_reprs` le
-fasse, inclure son chemin parent dans `sys.path` n'est pas nécessaire. Le
-dictionnaire `sys.modules` conserve les paquets et modules importés pour
-réutilisation, ce qui les rend disponibles dans tous les modules. Soyez prudent
+Cependant, si un module ou paquet a été importé avant l'exécution de
+`read_reprs`, inclure son chemin parent dans `sys.path` n'est pas nécessaire.
+Le dictionnaire `sys.modules` conserve les modules et paquets importés pour
+réutilisation, ce qui les rend importables dans tous les modules. Soyez prudent
 en profitant de cette fonctionnalité. Autrement, `read_reprs` risque de lever
 une exception `ModuleNotFoundError`.
 
@@ -100,18 +100,18 @@ Recreating objects requires to import their class unless they are of a built-in
 type. For this purpose, the user must provide the necessary import statements
 to `read_reprs` as character strings.
 
-The imported classes' package or module must be accessible for importation. It
-is the case for standard and installed packages. For classes from other
-sources, the path to their package's or module's parent directory must be
-included in list `sys.path`. If paths are provided to generator `read_reprs`,
-it adds them to `sys.path`, performs the imports and removes the added paths
-from `sys.path`. If, instead, you modify `sys.path` yourself, you should not
-provide paths to `read_reprs`.
+The imported classes' module or package must be importable. It is the case for
+standard and installed packages. For classes from other sources, the path to
+their module's or package's parent directory must be included in list
+`sys.path`. If paths are provided to generator `read_reprs`, it adds them to
+`sys.path`, performs the imports and removes the added paths from `sys.path`.
+If, instead, you modify `sys.path` yourself, you should not provide paths to
+`read_reprs`.
 
-However, if a package or module has been imported before `read_reprs` does so,
-including its parent path in `sys.path` is not required. Dictionary
-`sys.modules` stores imported packages and modules for reuse, which makes them
-available in all modules. Be careful when benefitting from this feature.
+However, if a module or package has been imported before `read_reprs` is
+executed, including its parent path in `sys.path` is not required. Dictionary
+`sys.modules` stores imported modules and packages for reuse, which makes them
+importable in all modules. Be careful when benefitting from this feature.
 Otherwise, `read_reprs` may raise a `ModuleNotFoundError`.
 
 ### Dependencies
