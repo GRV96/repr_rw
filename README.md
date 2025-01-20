@@ -122,8 +122,9 @@ Otherwise, `read_reprs` may raise a `ModuleNotFoundError`.
 
 Library `syspathmodif`, a dependency of `repr_rw`, offers function
 `sm_contains`, which indicates whether `sys.modules` contains the module or
-package given as argument. If `sm_contains` returns `True`, you can omit
-including the concerned module's or package's parent path in `sys.path`.
+package whose name is given as argument. If `sm_contains` returns `True`, you
+can omit including the concerned module's or package's parent path in
+`sys.path`.
 
 ### Dependencies
 
