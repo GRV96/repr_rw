@@ -13,6 +13,6 @@ repo_root = Path(__file__).resolve().parents[2]
 
 system(f"python3 {repo_root}/setup.py sdist")
 
-latest_dist = next((repo_root/"dist").glob("repr_rw-*.tar.gz"))
+src_dist = next((repo_root/"dist").glob("repr_rw-*.tar.gz"))
 
-system(f"pip3 install --no-cache-dir {latest_dist}")
+system(f"pip3 install --no-cache-dir {src_dist}")
