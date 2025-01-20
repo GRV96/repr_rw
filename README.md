@@ -41,6 +41,12 @@ réutilisation, ce qui les rend importables dans tous les modules. Soyez prudent
 en profitant de cette fonctionnalité. Autrement, `read_reprs` risque de lever
 une exception `ModuleNotFoundError`.
 
+La bibliothèque `syspathmodif`, une dépendance de `repr_rw`, offre la fonction
+`sm_contains`, qui indique si `sys.modules` contient le module ou paquet dont
+le nom est donné en argument. Si `sm_contains` renvoie vrai (`True`), on peut
+omettre d'inclure le chemin parent du module ou paquet concerné dans
+`sys.path`.
+
 ### Dépendances
 
 Installez les dépendances avec cette commande.
@@ -113,6 +119,11 @@ executed, including its parent path in `sys.path` is not required. Dictionary
 `sys.modules` stores imported modules and packages for reuse, which makes them
 importable in all modules. Be careful when benefitting from this feature.
 Otherwise, `read_reprs` may raise a `ModuleNotFoundError`.
+
+Library `syspathmodif`, a dependency of `repr_rw`, offers function
+`sm_contains`, which indicates whether `sys.modules` contains the module or
+package given as argument. If `sm_contains` returns `True`, you can omit
+including the concerned module's or package's parent path in `sys.path`.
 
 ### Dependencies
 
