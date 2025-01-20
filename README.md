@@ -57,8 +57,8 @@ pip install -r requirements.txt
 ### Démos
 
 Le script `demo_write.py` montre comment utiliser la fonction `write_reprs`. Il
-faut l'exécuter en premier, car il produit un fichier dont `demo_read.py` a
-besoin.
+faut l'exécuter en premier, car il produit un fichier dont les démos de lecture
+ont besoin.
 
 ```
 python demos/demo_write.py
@@ -136,7 +136,7 @@ pip install -r requirements.txt
 ### Demos
 
 Script `demo_write.py` shows how to use function `write_reprs`. It must be
-executed first because it makes a file that `demo_read.py` needs.
+executed first because it makes a file that the reading demos need.
 
 ```
 python demos/demo_write.py
