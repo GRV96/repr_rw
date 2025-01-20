@@ -11,24 +11,24 @@ def _make_descriptions():
 	with open("README.md", _MODE_R, encoding=_ENCODING_UTF8) as readme_file:
 		readme_content = readme_file.read()
 
-	fr_title = "## FRANÇAIS"
-	en_title = "## ENGLISH"
+	title_fr = "## FRANÇAIS"
+	title_en = "## ENGLISH"
 
-	fr_index = readme_content.index(fr_title)
-	fr_end_index = readme_content.index("#### Importation")
+	index_fr = readme_content.index(title_fr)
+	index_end_fr = readme_content.index("#### Importation")
 
-	en_index = readme_content.index(en_title)
-	en_desc_index = en_index + len(en_title)
-	en_content_index = readme_content.index("### Content", en_desc_index)
-	en_end_index = readme_content.index("#### Importing", en_index)
+	index_en = readme_content.index(title_en)
+	index_desc_en = index_en + len(title_en)
+	index_desc_end_en = readme_content.index("### Content", index_desc_en)
+	index_end_en = readme_content.index("#### Importing", index_desc_end_en)
 
-	short_description = readme_content[en_desc_index: en_content_index]
+	short_description = readme_content[index_desc_en: index_desc_end_en]
 	short_description = short_description.replace(_NEW_LINE, " ")
 	short_description = short_description.replace("`", "")
 	short_description = short_description.strip()
 
-	long_description = readme_content[fr_index: fr_end_index]\
-		+ readme_content[en_index:en_end_index].rstrip()
+	long_description = readme_content[index_fr: index_end_fr]\
+		+ readme_content[index_en:index_end_en].rstrip()
 
 	return short_description, long_description
 
