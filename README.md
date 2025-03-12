@@ -20,7 +20,7 @@ de ce générateur produit un objet.
 Pour plus d'informations, consultez la documentation des fonctions et les démos
 dans le dépôt de code source.
 
-#### Importation de classes et modification de `sys.path`
+### Importation de classes et modification de `sys.path`
 
 Recréer des objets requiert d'importer leur classe sauf s'ils sont d'un type
 natif (*built-in*). À cette fin, il faut fournir à `read_reprs` les
@@ -100,7 +100,7 @@ yields one object.
 For more information, consult the functions' documentation and the demos in the
 source code repository.
 
-#### Importing classes and modifying `sys.path`
+### Importing classes and modifying `sys.path`
 
 Recreating objects requires to import their class unless they are of a built-in
 type. For this purpose, the user must provide the necessary import statements
