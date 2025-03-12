@@ -1,14 +1,14 @@
 from pathlib import Path
 import sys
 from syspathmodif import\
-	sp_append,\
+	sp_prepend,\
 	sp_remove,\
 	SysPathBundle
 
 _LOCAL_DIR = Path(__file__).parent.resolve()
 _REPO_ROOT = _LOCAL_DIR.parent
 
-sp_append(_REPO_ROOT)
+sp_prepend(_REPO_ROOT)
 from repr_rw import\
 	read_reprs
 sp_remove(_REPO_ROOT)
