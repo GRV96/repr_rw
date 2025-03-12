@@ -1,1 +1,1 @@
-syspathmodif==1.5.0
+syspathmodif>=1.5.0
