@@ -46,16 +46,16 @@ def read_reprs(
 	statements as character strings. All import statements must match regular
 	expression "from .+ import .+".
 
-	The imported classes' package or module must be accessible for importation.
+	The imported classes' module or package must be accessible for importation.
 	It is the case for standard and installed packages. For classes from other
-	sources, the path to their package's or module's parent directory must be
+	sources, the path to their module's or package's parent directory must be
 	included in list sys.path. If paths are provided to this generator, it adds
 	them to sys.path, performs the imports and removes the paths from sys.path.
 	If, instead, you modify sys.path yourself, you should not provide paths.
 
-	However, if a package or module has been imported before this generator
+	However, if a module or package has been imported before this generator
 	does so, including its parent path in sys.path is not required. Dictionary
-	sys.modules stores imported packages and modules for reuse, which makes
+	sys.modules stores imported modules and packages for reuse, which makes
 	them available in all modules. Be careful when benefitting from this
 	feature. Otherwise, this generator may raise a ModuleNotFoundError.
 
