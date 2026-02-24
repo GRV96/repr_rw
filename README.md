@@ -64,17 +64,17 @@ ont besoin.
 python demos/demo1_write.py
 ```
 
-Le script `demo2_read.py` montre comment utiliser la fonction `read_reprs`. Il
-faut l'exécuter après `demo1_write.py`, car il ne fonctionne pas sans le
-fichier produit par cet autre script.
+Le script `demo2_read.py` montre comment utiliser le générateur `read_reprs`.
+Il faut l'exécuter après `demo1_write.py`, car `demo2_read.py` ne fonctionne
+pas sans le fichier produit par cet autre script.
 
 ```
 python demos/demo2_read.py
 ```
 
-Le script `demo3_read_no_paths.py` montre comment la fonction `read_reprs` peut
-fonctionner sans ajouter de chemins à `sys.path`. Ce script aussi a besoin du
-fichier produit par `demo1_write.py`.
+Le script `demo3_read_no_paths.py` montre comment le générateur `read_reprs`
+peut fonctionner sans ajouter de chemins à `sys.path`. Ce script aussi a besoin
+du fichier produit par `demo1_write.py`.
 
 ```
 python demos/demo3_read_no_paths.py
@@ -142,15 +142,15 @@ executed first because it makes a file that the reading demos need.
 python demos/demo1_write.py
 ```
 
-Script `demo2_read.py` shows how to use function `read_reprs`. It must be
-executed after `demo1_write.py` because it cannot work without the file made by
-that other script.
+Script `demo2_read.py` shows how to use generator `read_reprs`. It must be
+executed after `demo1_write.py` because `demo2_read.py` cannot work without the
+file made by that other script.
 
 ```
 python demos/demo2_read.py
 ```
 
-Script `demo3_read_no_paths.py` shows how function `read_reprs` can work
+Script `demo3_read_no_paths.py` shows how generator `read_reprs` can work
 without adding paths to `sys.path`. This script too needs the file made by
 `demo1_read.py`.
 
