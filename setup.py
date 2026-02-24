@@ -33,19 +33,16 @@ def _make_descriptions() -> tuple[str, str]:
 	return short_description, long_description
 
 
-def _make_requirement_list() -> list[str]:
+def _gather_requirements() -> tuple[str]:
 	with open("requirements.txt",
 			_MODE_R, encoding=_ENCODING_UTF8) as req_file:
 		req_str = req_file.read()
 
-	raw_requirements = req_str.split(_NEW_LINE)
-
-	requirements: list[str] = list()
-	for requirement in raw_requirements:
-		if len(requirement) > 0:
-			requirements.append(requirement)
-
-	return requirements
+	return *(
+		requirement
+		for requirement in req_str.split(_NEW_LINE)
+		if len(requirement) > 0
+	),
 
 
 if __name__ == "__main__":
@@ -68,7 +65,7 @@ if __name__ == "__main__":
 			"Topic :: Software Development :: Libraries :: Python Modules",
 			"Topic :: Utilities"
 		],
-		install_requires = _make_requirement_list(),
+		install_requires = _gather_requirements(),
 		packages = setuptools.find_packages(
 			exclude=(".github", "demo_package", "demos")),
 		license = "MIT",
