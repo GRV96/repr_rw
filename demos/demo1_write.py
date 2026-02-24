@@ -4,8 +4,10 @@ from syspathmodif import\
 	sp_prepend,\
 	sp_remove
 
+
 _LOCAL_DIR = Path(__file__).parent.resolve()
 _REPO_ROOT = _LOCAL_DIR.parent
+
 
 sp_prepend(_REPO_ROOT)
 from demo_package import\

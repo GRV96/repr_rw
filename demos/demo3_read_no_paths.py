@@ -3,8 +3,10 @@ import sys
 from syspathmodif import\
 	SysPathBundle
 
+
 _LOCAL_DIR = Path(__file__).parent.resolve()
 _REPO_ROOT = _LOCAL_DIR.parent
+
 
 paths = (
 	# For Ajxo's package
