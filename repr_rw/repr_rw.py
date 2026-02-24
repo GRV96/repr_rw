@@ -1,6 +1,8 @@
 # __all__ declared at the module's end
 
+from pathlib import Path
 import re
+from typing import Any, Generator, Iterable
 
 # strath is a dependency of syspathmodif.
 from strath import\
@@ -9,26 +11,30 @@ from syspathmodif import\
 	SysPathBundle
 
 
-_ENCODING_UTF8 = "utf-8"
-_MODE_R = "r"
-_MODE_W = "w"
-_NEW_LINE = "\n"
+_ENCODING_UTF8: str = "utf-8"
+_MODE_R: str = "r"
+_MODE_W: str = "w"
+_NEW_LINE: str = "\n"
 
-_REGEX_FROM_IMPORT = "from .+ import .+"
+_REGEX_FROM_IMPORT: str = "from .+ import .+"
 
 
-def _is_valid_import_statement(some_str):
+def _is_valid_import_statement(some_str: str) -> bool:
 	regex_match = re.match(_REGEX_FROM_IMPORT, some_str)
 	return regex_match is not None
 
 
-def _raise_import_statement_value_error(importation):
+def _raise_import_statement_value_error(importation: str) -> None:
 	if not _is_valid_import_statement(importation):
 		raise ValueError(f"Import statements must match regex \""
 			+ _REGEX_FROM_IMPORT + "\". Recieved \"" + importation + "\".")
 
 
-def read_reprs(file_path, importations=None, paths=None):
+def read_reprs(
+	file_path: str | Path,
+	importations: Iterable[str] = None,
+	paths: Iterable[str | Path] = None
+) -> Generator[Any, None, None]:
 	"""
 	If a text file contains object representations, this generator can read it
 	to recreate the objects. Each line in the file must be a string returned by
@@ -54,12 +60,10 @@ def read_reprs(file_path, importations=None, paths=None):
 	feature. Otherwise, this generator may raise a ModuleNotFoundError.
 
 	Args:
-		file_path (str or pathlib.Path): the path to a text file that contains
-			object representations.
-		importations (generator, list, set or tuple):
-			class import statements (str). Defaults to None.
-		paths (generator, list, set or tuple): the paths (str or pathlib.Path)
-			to the imported classes. Defaults to None.
+		file_path: the path to a text file that contains object
+			representations.
+		importations: class import statements.
+		paths: the paths to the imported classes.
 
 	Yields:
 		an object recreated from its representation.
@@ -100,17 +104,19 @@ def read_reprs(file_path, importations=None, paths=None):
 				yield eval(obj_repr)
 
 
-def write_reprs(file_path, objs):
+def write_reprs(
+	file_path: str | Path,
+	objs: Iterable[Any]
+) -> None:
 	"""
 	Writes the representation of Python objects in a text file. Each line is a
 	string returned by function repr. If the file already exists, this function
 	overwrites it.
 
 	Args:
-		file_path (str or pathlib.Path): the path to the text file that will
-			contain the object representations.
-		objs (generator, list, set or tuple): the objects whose representation
-			will be written.
+		file_path: the path to the text file that will contain the object
+			representations.
+		objs: the objects whose representation will be written.
 
 	Raises:
 		TypeError: if argument file_path is not of type str or pathlib.Path.
