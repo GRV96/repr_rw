@@ -53,8 +53,8 @@ def read_reprs(
 	them to sys.path, performs the imports and removes the paths from sys.path.
 	If, instead, you modify sys.path yourself, you should not provide paths.
 
-	However, if a module or package has been imported before this generator
-	does so, including its parent path in sys.path is not required. Dictionary
+	However, if a module or package has been imported before this generator is
+	called, including its parent path in sys.path is not required. Dictionary
 	sys.modules stores imported modules and packages for reuse, which makes
 	them available in all modules. Be careful when benefitting from this
 	feature. Otherwise, this generator may raise a ModuleNotFoundError.
