@@ -32,8 +32,8 @@ def _raise_import_statement_value_error(importation: str) -> None:
 
 def read_reprs(
 	file_path: str | Path,
-	importations: Iterable[str] = None,
-	paths: Iterable[str | Path] = None
+	importations: Iterable[str] | None = None,
+	paths: Iterable[str | Path] | None = None
 ) -> Generator[Any, None, None]:
 	"""
 	If a text file contains object representations, this generator can read it
@@ -83,15 +83,13 @@ def read_reprs(
 			representation.
 	"""
 	if importations is not None:
-		if paths is not None:
-			bundle = SysPathBundle(paths, True)
+		bundle = SysPathBundle(paths, True)
 
 		for importation in importations:
 			_raise_import_statement_value_error(importation)
 			exec(importation)
 
-		if paths is not None:
-			del bundle
+		del bundle
 
 	file_path = ensure_path_is_pathlib(file_path, False)
 
