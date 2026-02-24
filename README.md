@@ -56,28 +56,28 @@ pip install -r requirements.txt
 
 ### Démos
 
-Le script `demo_write.py` montre comment utiliser la fonction `write_reprs`. Il
+Le script `demo1_write.py` montre comment utiliser la fonction `write_reprs`. Il
 faut l'exécuter en premier, car il produit un fichier dont les démos de lecture
 ont besoin.
 
 ```
-python demos/demo_write.py
+python demos/demo1_write.py
 ```
 
-Le script `demo_read.py` montre comment utiliser la fonction `read_reprs`. Il
-faut l'exécuter après `demo_write.py`, car il ne fonctionne pas sans le fichier
-produit par cet autre script.
+Le script `demo2_read.py` montre comment utiliser la fonction `read_reprs`. Il
+faut l'exécuter après `demo1_write.py`, car il ne fonctionne pas sans le
+fichier produit par cet autre script.
 
 ```
-python demos/demo_read.py
+python demos/demo2_read.py
 ```
 
-Le script `demo_read_no_paths.py` montre comment la fonction `read_reprs` peut
+Le script `demo3_read_no_paths.py` montre comment la fonction `read_reprs` peut
 fonctionner sans ajouter de chemins à `sys.path`. Ce script aussi a besoin du
-fichier produit par `demo_write.py`.
+fichier produit par `demo1_write.py`.
 
 ```
-python demos/demo_read_no_paths.py
+python demos/demo3_read_no_paths.py
 ```
 
 ## ENGLISH
@@ -135,24 +135,25 @@ pip install -r requirements.txt
 
 ### Demos
 
-Script `demo_write.py` shows how to use function `write_reprs`. It must be
+Script `demo1_write.py` shows how to use function `write_reprs`. It must be
 executed first because it makes a file that the reading demos need.
 
 ```
-python demos/demo_write.py
+python demos/demo1_write.py
 ```
 
-Script `demo_read.py` shows how to use function `read_reprs`. It must be
-executed after `demo_write.py` because it cannot work without the file made by
+Script `demo2_read.py` shows how to use function `read_reprs`. It must be
+executed after `demo1_write.py` because it cannot work without the file made by
 that other script.
 
 ```
-python demos/demo_read.py
+python demos/demo2_read.py
 ```
 
-Script `demo_read_no_paths.py` shows how function `read_reprs` can work without
-adding paths to `sys.path`. This script too needs the file made by `demo_read.py`.
+Script `demo3_read_no_paths.py` shows how function `read_reprs` can work
+without adding paths to `sys.path`. This script too needs the file made by
+`demo1_read.py`.
 
 ```
-python demos/demo_read_no_paths.py
+python demos/demo3_read_no_paths.py
 ```
