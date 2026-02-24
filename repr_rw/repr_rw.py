@@ -63,7 +63,7 @@ def read_reprs(
 		file_path: the path to a text file that contains object
 			representations.
 		importations: class import statements.
-		paths: the paths to the imported classes.
+		paths: the paths to the imported classes' modules or packages.
 
 	Yields:
 		an object recreated from its representation.
