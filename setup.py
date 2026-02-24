@@ -1,13 +1,13 @@
 import setuptools
 
 
-_ENCODING_UTF8 = "utf-8"
-_MODE_R = "r"
+_ENCODING_UTF8: str = "utf-8"
+_MODE_R: str = "r"
 
-_NEW_LINE = "\n"
+_NEW_LINE: str = "\n"
 
 
-def _make_descriptions():
+def _make_descriptions() -> tuple[str, str]:
 	with open("README.md", _MODE_R, encoding=_ENCODING_UTF8) as readme_file:
 		readme_content = readme_file.read()
 
@@ -33,14 +33,14 @@ def _make_descriptions():
 	return short_description, long_description
 
 
-def _make_requirement_list():
+def _make_requirement_list() -> list[str]:
 	with open("requirements.txt",
 			_MODE_R, encoding=_ENCODING_UTF8) as req_file:
 		req_str = req_file.read()
 
 	raw_requirements = req_str.split(_NEW_LINE)
 
-	requirements = list()
+	requirements: list[str] = list()
 	for requirement in raw_requirements:
 		if len(requirement) > 0:
 			requirements.append(requirement)

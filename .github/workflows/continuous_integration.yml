@@ -17,11 +17,11 @@ jobs:
       - name: Intall dependencies
         run: pip3 install --no-cache-dir -r requirements.txt
       - name: Test the writing demo
-        run: python3 demos/demo_write.py
+        run: python3 demos/demo1_write.py
       - name: Test the reading demo
-        run: python3 demos/demo_read.py
+        run: python3 demos/demo2_read.py
       - name: Test the reading demo with no paths given to read_reprs
-        run: python3 demos/demo_read_no_paths.py
+        run: python3 demos/demo3_read_no_paths.py
   test_pypi_package_build:
     runs-on: ubuntu-latest
     steps:
