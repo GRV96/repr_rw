@@ -33,7 +33,7 @@ def _make_descriptions() -> tuple[str, str]:
 	return short_description, long_description
 
 
-def _gather_requirements() -> tuple[str]:
+def _read_requirements() -> tuple[str]:
 	with open("requirements.txt",
 			_MODE_R, encoding=_ENCODING_UTF8) as req_file:
 		req_str = req_file.read()
@@ -65,7 +65,7 @@ if __name__ == "__main__":
 			"Topic :: Software Development :: Libraries :: Python Modules",
 			"Topic :: Utilities"
 		],
-		install_requires = _gather_requirements(),
+		install_requires = _read_requirements(),
 		packages = setuptools.find_packages(
 			exclude=(".github", "demo_package", "demos")),
 		license = "MIT",
