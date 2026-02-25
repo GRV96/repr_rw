@@ -46,6 +46,11 @@ def read_reprs(
 	statements as character strings. All import statements must match regular
 	expression "from .+ import .+".
 
+	WARNING! The object representations and the import statements are read by
+	eval and exec respectively. Make sure that the representations and all
+	imported modules are safe. A module's whole code is executed upon
+	importation.
+
 	The module or package of the classes to import must be importable. 	It is
 	the case for standard and installed packages. For classes from other
 	sources, the path to their module's or package's parent directory must be
