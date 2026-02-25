@@ -38,7 +38,7 @@ paths = (
 )
 
 
-# In this example, read_reprs handles the paths.
+# In this example, read_reprs mangees the paths.
 obj_generator = read_reprs(obj_path, importations, paths)
 
 print("Objects read:")
@@ -46,7 +46,7 @@ for obj in obj_generator:
 	print(f"{obj} {type(obj)}")
 
 
-# In this example, the paths are handled out of read_reprs.
+# In this example, the paths are managed out of read_reprs.
 obj_generator = None
 with SysPathBundle(paths):
 	obj_generator = read_reprs(obj_path, importations)
