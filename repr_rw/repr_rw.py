@@ -46,8 +46,8 @@ def read_reprs(
 	statements as character strings. All import statements must match regular
 	expression "from .+ import .+".
 
-	The imported classes' module or package must be accessible for importation.
-	It is the case for standard and installed packages. For classes from other
+	The module or package of the classes to import must be importable. 	It is
+	the case for standard and installed packages. For classes from other
 	sources, the path to their module's or package's parent directory must be
 	included in list sys.path. If paths are provided to this generator, it adds
 	them to sys.path, performs the imports and removes the paths from sys.path.

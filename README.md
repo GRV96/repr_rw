@@ -34,12 +34,12 @@ dans la liste `sys.path`. Si des chemins sont fournis au générateur
 les chemins ajoutés de `sys.path`. Si l'utilisateur modifie lui-même
 `sys.path`, il ne devrait pas fournir de chemins à `read_reprs`.
 
-Cependant, si un module ou paquet a été importé avant l'exécution de
-`read_reprs`, inclure son chemin parent dans `sys.path` n'est pas nécessaire.
-Le dictionnaire `sys.modules` conserve les modules et paquets importés pour
-réutilisation, ce qui les rend importables dans tous les modules. Soyez prudent
-en profitant de cette fonctionnalité. Autrement, `read_reprs` risque de lever
-une exception `ModuleNotFoundError`.
+Cependant, si un module ou paquet a été importé avant l'appel à `read_reprs`,
+inclure son chemin parent dans `sys.path` n'est pas nécessaire. Le dictionnaire
+`sys.modules` conserve les modules et paquets importés pour réutilisation, ce
+qui les rend importables dans tous les modules. Soyez prudent en profitant de
+cette fonctionnalité. Autrement, `read_reprs` risque de lever une exception
+`ModuleNotFoundError`.
 
 La bibliothèque `syspathmodif`, une dépendance de `repr_rw`, offre la fonction
 `sm_contains`, qui indique si `sys.modules` contient le module ou paquet dont
@@ -115,7 +115,7 @@ If, instead, you modify `sys.path` yourself, you should not provide paths to
 `read_reprs`.
 
 However, if a module or package has been imported before `read_reprs` is
-executed, including its parent path in `sys.path` is not required. Dictionary
+called, including its parent path in `sys.path` is not required. Dictionary
 `sys.modules` stores imported modules and packages for reuse, which makes them
 importable in all modules. Be careful when benefitting from this feature.
 Otherwise, `read_reprs` may raise a `ModuleNotFoundError`.
