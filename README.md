@@ -56,17 +56,17 @@ pip install -r requirements.txt
 
 ### Démos
 
-Le script `demo1_write.py` montre comment utiliser la fonction `write_reprs`. Il
-faut l'exécuter en premier, car il produit un fichier dont les démos de lecture
-ont besoin.
+Le script `demo1_write.py` montre comment utiliser la fonction `write_reprs`.
+Il faut exécuter cette démo en premier, car elle produit un fichier dont les
+démos de lecture ont besoin.
 
 ```
 python demos/demo1_write.py
 ```
 
 Le script `demo2_read.py` montre comment utiliser le générateur `read_reprs`.
-Il faut l'exécuter après `demo1_write.py`, car `demo2_read.py` ne fonctionne
-pas sans le fichier produit par cet autre script.
+Il faut exécuter cette démo après `demo1_write.py`, car `demo2_read.py` ne
+fonctionne pas sans le fichier produit par cet autre script.
 
 ```
 python demos/demo2_read.py
@@ -135,16 +135,16 @@ pip install -r requirements.txt
 
 ### Demos
 
-Script `demo1_write.py` shows how to use function `write_reprs`. It must be
-executed first because it makes a file that the reading demos need.
+Script `demo1_write.py` shows how to use function `write_reprs`. This demo must
+be executed first because it makes a file that the reading demos need.
 
 ```
 python demos/demo1_write.py
 ```
 
-Script `demo2_read.py` shows how to use generator `read_reprs`. It must be
-executed after `demo1_write.py` because `demo2_read.py` cannot work without the
-file made by that other script.
+Script `demo2_read.py` shows how to use generator `read_reprs`. This demo must
+be executed after `demo1_write.py` because `demo2_read.py` cannot work without
+the file made by that other script.
 
 ```
 python demos/demo2_read.py
