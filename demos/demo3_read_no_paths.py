@@ -19,7 +19,7 @@ with SysPathBundle(paths):
 	from repr_rw import\
 		read_reprs
 
-	# The next import statements include demo_package and point in sys.modules.
+	# These import statements include demo_package and point in sys.modules.
 	# This ensures that they will be avialabe in read_reprs
 	# even though that function will not modify sys.path.
 	import demo_package
