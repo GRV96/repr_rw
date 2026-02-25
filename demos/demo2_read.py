@@ -38,7 +38,7 @@ paths = (
 )
 
 
-# In this example, read_reprs mangees the paths.
+# In this example, read_reprs manages the paths.
 obj_generator = read_reprs(obj_path, importations, paths)
 
 print("Objects read:")
