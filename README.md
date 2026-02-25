@@ -2,18 +2,18 @@
 
 ## FRANÇAIS
 
-Cette bibliothèque écrit des représentations d'objets dans un fichier texte et
+Cette bibliothèque écrit des représentations d'objet dans un fichier texte et
 lit le fichier pour recréer les objets. Une représentation d'objet est une
 chaîne de caractères renvoyée par la fonction `repr`.
 
 ### Contenu
 
-La fonction `write_reprs` écrit des représentations d'objets dans un fichier
+La fonction `write_reprs` écrit des représentations d'objet dans un fichier
 texte. Chaque ligne du fichier est une représentation d'objet. Si le fichier
 spécifié existe déjà, cette fonction l'écrase.
 
 Le générateur `read_reprs` lit un fichier texte contenant des représentations
-d'objets dans le but de recréer ces objets. Chaque ligne du fichier doit être
+d'objet dans le but de recréer les objets. Chaque ligne du fichier doit être
 une représentation d'objet. Les lignes vides sont ignorées. Chaque itération
 de ce générateur produit un objet.
 
