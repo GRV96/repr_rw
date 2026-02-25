@@ -26,7 +26,7 @@ Recréer des objets requiert d'importer leur classe sauf s'ils sont d'un type
 natif (*built-in*). À cette fin, il faut fournir à `read_reprs` les
 instructions d'importation nécessaires en chaînes de caractères.
 
-Le module ou paquet des classes importées doit être importable. C'est le cas
+Le module ou paquet des classes à importer doit être importable. C'est le cas
 des paquets standards et installés. Pour les classes provenant d'autres
 sources, il faut inclure le chemin du dossier parent de leur module ou paquet
 dans la liste `sys.path`. Si des chemins sont fournis au générateur
@@ -106,9 +106,9 @@ Recreating objects requires to import their class unless they are of a built-in
 type. For this purpose, the user must provide the necessary import statements
 to `read_reprs` as character strings.
 
-The imported classes' module or package must be importable. It is the case for
-standard and installed packages. For classes from other sources, the path to
-their module's or package's parent directory must be included in list
+The module or package of the classes to import must be importable. It is the
+case for standard and installed packages. For classes from other sources, the
+path to their module's or package's parent directory must be included in list
 `sys.path`. If paths are provided to generator `read_reprs`, it adds them to
 `sys.path`, performs the imports and removes the added paths from `sys.path`.
 If, instead, you modify `sys.path` yourself, you should not provide paths to
